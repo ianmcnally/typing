@@ -1,6 +1,8 @@
 /* eslint-disable react/no-multi-comp */
-
-import React, { PropTypes } from 'react'
+import React from 'react'
+import * as AppPropTypes from 'src/prop-types'
+import { connect, Provider } from 'react-redux'
+import createNewStore from 'src/store'
 import map from 'lodash.map'
 
 export const Word = ({ value }) => (
@@ -8,7 +10,7 @@ export const Word = ({ value }) => (
 )
 
 Word.propTypes = {
-  value : PropTypes.string.isRequired
+  value : AppPropTypes.word
 }
 
 export const Words = ({ words }) => (
@@ -20,12 +22,26 @@ export const Words = ({ words }) => (
 )
 
 Words.propTypes = {
-  words : PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+  words : AppPropTypes.words
 }
 
-export const App = () => (
+export const App = ({ words }) => (
   <section>
-    <Words words={['a', 'bee']} />
+    <Words words={words} />
   </section>
+)
+
+App.propTypes = {
+  words : AppPropTypes.words.isRequired
+}
+
+const mapStateToProps = ({ words }) => ({ words })
+
+const ConnectedApp = connect(mapStateToProps)(App)
+
+export const Root = () => (
+  <Provider store={createNewStore()}>
+    <ConnectedApp />
+  </Provider>
 )
 

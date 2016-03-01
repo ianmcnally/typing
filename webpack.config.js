@@ -55,7 +55,7 @@ var config = {
 }
 
 var buildConfig = extend({}, config, {
-  entry : [PATHS.SOURCE + '/app.jsx']
+  entry : [PATHS.SOURCE + '/index.js']
 })
 
 var devConfig = extend({}, buildConfig, {

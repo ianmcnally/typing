@@ -6,16 +6,17 @@ import { expect } from 'chai'
 describe('App', () => {
 
   describe('<App>', () => {
+    const words = ['Charles', 'in', 'Charge']
     let component
 
     before(() => {
-      const { output } = renderShallow(<App />)
+      const { output } = renderShallow(<App words={words} />)
       component = output
     })
 
-    it('renders <Words> with a list of words', () => {
+    it('renders <Words> with a list of props.words', () => {
       expect(component).to.include(
-        <Words words={['a', 'bee']} />
+        <Words words={words} />
       )
     })
 
