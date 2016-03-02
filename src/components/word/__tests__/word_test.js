@@ -13,7 +13,7 @@ describe('<Word>', () => {
   })
 
   it('renders props.value as text wrapped in a span', () => {
-    expect(component).to.eql(<span>{value}</span>)
+    expect(component).to.eql(<span className='word__word'>{value}</span>)
   })
 
 })

@@ -1,3 +1,4 @@
+/* eslint-env node */
 /* eslint-disable no-var,object-shorthand,prefer-template */
 
 var path = require('path')
@@ -27,7 +28,7 @@ var config = {
         test : /\.css$/,
         exclude : /node_modules/,
         loader : ExtractTextPlugin.extract('style',
-          'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss')
+          'css?modules&importLoaders=1&localIdentName=[name]__[local]!postcss')
       },
       {
         test : /sinon\.js$/,

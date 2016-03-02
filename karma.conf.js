@@ -1,3 +1,4 @@
+/* eslint-env node */
 /* eslint-disable no-var */
 
 var webpackConfig = require('./webpack.config').buildConfig
