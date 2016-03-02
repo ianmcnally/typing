@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
+import { advanceAWord } from 'src/actions'
 import defer from 'lodash.defer'
 
 const SPACEBAR_KEY_CODE = 32
@@ -10,13 +11,21 @@ export default class TypingBox extends Component {
     this.onKeyDown = this.onKeyDown.bind(this)
   }
 
+  _clearInput (input) {
+    defer(() => {
+      input.value = ''
+    })
+  }
+
   onKeyDown (event) {
     const { keyCode, target } = event
 
     if (keyCode !== SPACEBAR_KEY_CODE)
       return
 
-    defer(() => target.value = '')
+    this.props.dispatch(advanceAWord())
+
+    this._clearInput(target)
   }
 
   render () {
@@ -25,4 +34,8 @@ export default class TypingBox extends Component {
     )
   }
 
+}
+
+TypingBox.propTypes = {
+  dispatch : PropTypes.func.isRequired
 }

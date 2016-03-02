@@ -1,0 +1,1 @@
+export const ADVANCE_A_WORD = 'ADVANCE_A_WORD'

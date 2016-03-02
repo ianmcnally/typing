@@ -1,20 +1,23 @@
 import React from 'react'
 import TypingBox from '../typing-box'
+import { advanceAWord } from 'src/actions'
 import { findDOMNode } from 'react-dom'
 import { expect } from 'chai'
 import { renderShallow } from 'src/test-helpers/lib'
 import { renderIntoDocument, Simulate } from 'react-addons-test-utils'
 import defer from 'lodash.defer'
+import { spy } from 'sinon'
 
 const noRefCheck = () => {}
 
 describe('<TypingBox>', () => {
 
   context('when it renders', () => {
+    const dispatch = spy()
     let component
 
     before(() => {
-      const { output } = renderShallow(<TypingBox />)
+      const { output } = renderShallow(<TypingBox dispatch={dispatch} />)
       component = output
     })
 
@@ -27,10 +30,11 @@ describe('<TypingBox>', () => {
   })
 
   context('when the spacebar is pressed', () => {
+    const dispatch = spy()
     let input
 
     before(done => {
-      const component = renderIntoDocument(<TypingBox />)
+      const component = renderIntoDocument(<TypingBox dispatch={dispatch} />)
       input = findDOMNode(component)
 
       input.value = 'zzz'
@@ -45,7 +49,8 @@ describe('<TypingBox>', () => {
       expect(input.value).to.be.empty
     })
 
-    xit('dispatches a word advancement action', () => {
+    it('dispatches a word advancement action', () => {
+      expect(dispatch).to.have.been.calledWith(advanceAWord())
     })
 
   })

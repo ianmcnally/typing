@@ -5,10 +5,10 @@ import { connect, Provider } from 'react-redux'
 import { Words, TypingBox } from 'src/components'
 import createNewStore from 'src/store'
 
-export const App = ({ words }) => (
+export const App = ({ dispatch, words }) => (
   <section>
     <Words words={words} />
-    <TypingBox />
+    <TypingBox dispatch={dispatch} />
   </section>
 )
 
