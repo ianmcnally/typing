@@ -1,3 +1,2 @@
-const defaultState = []
+export { default as words } from './words'
 
-export const words = (state = defaultState) => state
