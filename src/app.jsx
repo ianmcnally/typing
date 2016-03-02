@@ -39,7 +39,7 @@ const mapStateToProps = ({ words }) => ({ words })
 
 const ConnectedApp = connect(mapStateToProps)(App)
 
-export const Root = () => (
+export default () => (
   <Provider store={createNewStore()}>
     <ConnectedApp />
   </Provider>
