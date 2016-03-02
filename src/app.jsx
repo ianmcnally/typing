@@ -2,12 +2,13 @@
 import React from 'react'
 import * as AppPropTypes from 'src/prop-types'
 import { connect, Provider } from 'react-redux'
-import { Words } from 'src/components'
+import { Words, TypingBox } from 'src/components'
 import createNewStore from 'src/store'
 
 export const App = ({ words }) => (
   <section>
     <Words words={words} />
+    <TypingBox />
   </section>
 )
 
