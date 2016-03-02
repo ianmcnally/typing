@@ -16,7 +16,8 @@ module.exports = function (config) {
     webpackMiddleware : {
       stats : {
         colors : true
-      }
+      },
+      noInfo: true
     },
     preprocessors : {
       'src/test-helpers/test-index.js' : ['webpack']
