@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { advanceAWord } from 'src/actions'
+import { SPACEBAR_KEY_CODE } from 'src/constants'
 import defer from 'lodash.defer'
 
-const SPACEBAR_KEY_CODE = 32
 
 export default class TypingBox extends Component {
   constructor (props) {
