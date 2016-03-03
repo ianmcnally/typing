@@ -2,7 +2,7 @@
 /* eslint-disable no-var,object-shorthand,prefer-template */
 
 var path = require('path')
-var extend = require('lodash/object/extend')
+var extend = require('lodash').extend
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
