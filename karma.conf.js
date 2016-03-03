@@ -10,14 +10,19 @@ module.exports = function (config) {
     files : [
       'node_modules/es5-shim/es5-shim.min.js',
       'node_modules/react/dist/react.min.js',
-      'src/test-helpers/test-index.js'
+      {
+        pattern : 'src/test-helpers/test-index.js',
+        watched : false,
+        included : true,
+        served : true
+      }
     ],
     webpack : webpackConfig,
     webpackMiddleware : {
       stats : {
         colors : true
       },
-      noInfo: true
+      noInfo : true
     },
     preprocessors : {
       'src/test-helpers/test-index.js' : ['webpack']
@@ -34,4 +39,3 @@ module.exports = function (config) {
 }
 
 /* eslint-enable no-var */
-
