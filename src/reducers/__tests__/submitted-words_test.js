@@ -1,18 +1,22 @@
 import { createNewStore } from 'src/store'
-import { ADVANCE_A_WORD } from 'src/action-types'
+import { SUBMISSION_GRADED } from 'src/action-types'
 import { expect } from 'chai'
 
 describe('submittedWords reducer', () => {
 
-  context(`when ${ADVANCE_A_WORD} is dispatched`, () => {
-    const submission = 'heyo'
+  context(`when ${SUBMISSION_GRADED} is dispatched`, () => {
+    const submission = {
+      value: 'someword',
+      isCorrect: true
+    }
+
     let state
 
     before(() => {
       const store = createNewStore({ submittedWords: [] })
 
       store.dispatch({
-        type: ADVANCE_A_WORD,
+        type: SUBMISSION_GRADED,
         submission
       })
 
@@ -26,7 +30,11 @@ describe('submittedWords reducer', () => {
   })
 
   context('when an unhandled action is dispatched', () => {
-    const submittedWords = ['sup']
+    const submittedWords = [{
+      value: 'someword',
+      isCorrect: true
+    }]
+
     let state
 
     before(() => {
