@@ -13,7 +13,7 @@ export const Words = ({ words }) => (
 )
 
 Words.propTypes = {
-  words : AppPropTypes.words
+  words: AppPropTypes.words
 }
 
 const mapStateToProps = ({ words }) => ({ words })

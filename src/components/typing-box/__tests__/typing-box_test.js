@@ -41,7 +41,7 @@ describe('<TypingBox>', () => {
       input.value = value
       Simulate.change(input)
 
-      Simulate.keyDown(input, { keyCode : 32 })
+      Simulate.keyDown(input, { keyCode: 32 })
 
       defer(done)
     })

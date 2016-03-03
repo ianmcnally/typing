@@ -7,7 +7,7 @@ const Word = ({ value }) => (
 )
 
 Word.propTypes = {
-  value : AppPropTypes.word
+  value: AppPropTypes.word
 }
 
 export default Word

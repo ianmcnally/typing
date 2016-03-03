@@ -14,6 +14,7 @@
   "disallowQuotedKeysInObjects": true,
   "disallowSemicolons": true,
   "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"],
+  "disallowSpaceAfterObjectKeys": true,
   "disallowSpacesInCallExpression": true,
   "disallowSpacesInsideArrayBrackets": "all",
   "disallowSpacesInsideBrackets": true,
@@ -71,7 +72,6 @@
     "return",
     "typeof"
   ],
-  "requireSpaceAfterObjectKeys": true,
   "requireSpaceBeforeBinaryOperators": [
     "=",
     "+",

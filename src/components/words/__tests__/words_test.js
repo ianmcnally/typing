@@ -46,10 +46,10 @@ describe('<Words>', () => {
           words={words}
           dispatch={noRefCheck}
           store={{
-            dispatch : noRefCheck,
-            getState : noRefCheck,
-            replaceReducer : noRefCheck,
-            subscribe : noRefCheck
+            dispatch: noRefCheck,
+            getState: noRefCheck,
+            replaceReducer: noRefCheck,
+            subscribe: noRefCheck
           }}
         />
       )

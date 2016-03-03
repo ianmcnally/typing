@@ -37,7 +37,7 @@ export class TypingBox extends Component {
 }
 
 TypingBox.propTypes = {
-  dispatch : PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired
 }
 
 export default connect()(TypingBox)
