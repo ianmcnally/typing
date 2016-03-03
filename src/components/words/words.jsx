@@ -1,9 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Word } from 'src/components'
 import * as AppPropTypes from 'src/prop-types'
 import map from 'lodash.map'
 
-const Words = ({ words }) => (
+export const Words = ({ words }) => (
   <article>
     {map(words, (word, idx) => (
     <Word value={word} index={idx} key={idx} />
@@ -15,5 +16,7 @@ Words.propTypes = {
   words : AppPropTypes.words
 }
 
-export default Words
+const mapStateToProps = ({ words }) => ({ words })
+
+export default connect(mapStateToProps)(Words)
 

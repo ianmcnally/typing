@@ -1,4 +1,4 @@
-import { App } from 'src/app'
+import { App } from '../app'
 import { Words, TypingBox } from 'src/components'
 import { renderShallow } from 'src/test-helpers/lib'
 import React from 'react'
@@ -17,15 +17,15 @@ describe('App', () => {
       component = output
     })
 
-    it('renders <Words> with a list of props.words', () => {
+    it('renders <Words>', () => {
       expect(component).to.include(
-        <Words words={words} />
+        <Words />
       )
     })
 
     it('renders the typing box', () => {
       expect(component).to.include(
-        <TypingBox dispatch={dispatch} />
+        <TypingBox />
       )
     })
 

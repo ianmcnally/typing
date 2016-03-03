@@ -5,8 +5,9 @@ const initialState = {
   words : ['a', 'b', 'c']
 }
 
-const createNewStore = () => (
-  createStore(combineReducers(reducers), initialState)
+export const createNewStore = (state = initialState) => (
+  createStore(combineReducers(reducers), state)
 )
 
-export default createNewStore
+export default createNewStore()
+
