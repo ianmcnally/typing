@@ -1,5 +1,5 @@
 import React from 'react'
-import TypingBox from '../typing-box'
+import { TypingBox } from '../typing-box'
 import { advanceAWord } from 'src/actions'
 import { findDOMNode } from 'react-dom'
 import { expect } from 'chai'
@@ -31,13 +31,14 @@ describe('<TypingBox>', () => {
 
   context('when the spacebar is pressed', () => {
     const dispatch = spy()
+    const value = 'zzz'
     let input
 
     before(done => {
       const component = renderIntoDocument(<TypingBox dispatch={dispatch} />)
       input = findDOMNode(component)
 
-      input.value = 'zzz'
+      input.value = value
       Simulate.change(input)
 
       Simulate.keyDown(input, { keyCode : 32 })
@@ -50,7 +51,7 @@ describe('<TypingBox>', () => {
     })
 
     it('dispatches a word advancement action', () => {
-      expect(dispatch).to.have.been.calledWith(advanceAWord())
+      expect(dispatch).to.have.been.calledWith(advanceAWord(value))
     })
 
   })
