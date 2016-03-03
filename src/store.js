@@ -2,8 +2,7 @@ import { createStore, combineReducers } from 'redux'
 import * as reducers from 'src/reducers'
 
 const initialState = {
-  words: ['a', 'b', 'c'],
-  currentWord: 0
+  words: ['a', 'b', 'c']
 }
 
 export const createNewStore = (state = initialState) => (
