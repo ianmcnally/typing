@@ -23,7 +23,7 @@ describe('<TypingBox>', () => {
 
     it('renders an input element', () => {
       expect(component).to.eql(
-        <input type='text' autoFocus onKeyDown={noRefCheck} />
+        <input className='typing-box__input' type='text' autoFocus onKeyDown={noRefCheck} />
       )
     })
 

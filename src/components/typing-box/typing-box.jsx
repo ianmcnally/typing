@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { advanceAWord } from 'src/actions'
 import { SPACEBAR_KEY_CODE } from 'src/constants'
 import defer from 'lodash.defer'
+import styles from './typing-box.css'
 
 export class TypingBox extends Component {
   constructor (props) {
@@ -30,7 +31,7 @@ export class TypingBox extends Component {
 
   render () {
     return (
-      <input type='text' autoFocus onKeyDown={this.onKeyDown}/>
+      <input className={styles.input} type='text' autoFocus onKeyDown={this.onKeyDown}/>
     )
   }
 
