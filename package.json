@@ -55,9 +55,14 @@
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0"
   },
+  "config": {
+    "lint": "dev-server src webpack.config.js karma.conf.js"
+  },
   "scripts": {
     "ci": "npm run lint && npm run test:travisci",
-    "lint": "eslint --ext .jsx,.js dev-server src && jscs -x dev-server src",
+    "lint": "npm run lint:eslint && npm run lint:jscs",
+    "lint:eslint": "eslint --ext .jsx,.js $npm_package_config_lint",
+    "lint:jscs": "jscs -x $npm_package_config_lint",
     "start": "env NODE_ENV=development node dev-server",
     "test": "env NODE_ENV=test karma start karma.conf.js",
     "test:travisci": "env PHANTOMJS_BIN=/usr/local/bin/phantomjs npm test",
