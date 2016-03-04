@@ -1,5 +1,7 @@
 A typing game.
 
+[![Build Status](https://travis-ci.org/ianmcnally/typing.svg?branch=master)](https://travis-ci.org/ianmcnally/typing)
+
 ## Setup
 
 - Requires [node.js](nodejs.org) to be installed
