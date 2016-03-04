@@ -2,7 +2,7 @@
 /* eslint-disable no-var,object-shorthand,prefer-template */
 
 var path = require('path')
-var extend = require('lodash').extend
+var assign = require('lodash.assign')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
@@ -55,11 +55,11 @@ var config = {
   ]
 }
 
-var buildConfig = extend({}, config, {
+var buildConfig = assign({}, config, {
   entry : [PATHS.SOURCE + '/index.js']
 })
 
-var devConfig = extend({}, buildConfig, {
+var devConfig = assign({}, buildConfig, {
   entry : [
     'webpack-hot-middleware/client'
   ].concat(buildConfig.entry),
