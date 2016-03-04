@@ -5,7 +5,7 @@ import { expect } from 'chai'
 
 describe('action creators', () => {
 
-  describe('advancedAWord', () => {
+  describe('advanceAWord', () => {
 
     context('when a word can be submitted', () => {
 
