@@ -3,9 +3,11 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { Words, TypingBox } from 'src/components'
 import store from 'src/store'
+import 'normalize.css'
+import styles from './app.css'
 
 export const App = () => (
-  <section>
+  <section className={styles.app}>
     <Words />
     <TypingBox />
   </section>
