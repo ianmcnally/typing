@@ -1,3 +1,13 @@
 .word:after {
   content: ' '
+
 }
+
+.word--correct {
+  color: limegreen;
+}
+
+.word--incorrect {
+  color: pink;
+}
+
