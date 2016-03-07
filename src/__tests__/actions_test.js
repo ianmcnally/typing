@@ -4,6 +4,7 @@ import { spy, stub } from 'sinon'
 import range from 'lodash.range'
 import {
   SUBMISSION_GRADED,
+  ROUND_STARTED,
   ROUND_ENDED,
   TIME_ADVANCED
 } from '../action-types'
@@ -87,6 +88,29 @@ describe('action creators', () => {
   })
 
   describe('startTimer', () => {
+    context('before it starts the sequence', () => {
+      const dispatch = spy()
+
+      before(() => {
+        const testScheduler = new TestScheduler()
+
+        stub(scheduler, 'get').returns(testScheduler)
+
+        startTimer()(dispatch)
+      })
+
+      after(() => {
+        scheduler.get.restore()
+      })
+
+      it(`dispatches a ${ROUND_STARTED} event`, () => {
+        expect(dispatch).to.have.been.calledOnce.calledWith({
+          type: ROUND_STARTED
+        })
+      })
+
+    })
+
     context('while the sequence is happening', () => {
       const dispatch = spy()
       let testScheduler
