@@ -120,7 +120,8 @@
     "globals": {
         "chai": true,
         "expect": true,
-        "sinon": true
+        "sinon": true,
+        "process": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
