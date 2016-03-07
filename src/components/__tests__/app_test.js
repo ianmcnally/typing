@@ -1,5 +1,5 @@
 import { App } from '../app'
-import { Prompt, TypingBox } from 'src/components'
+import { Prompt, TypingBox, Timer } from 'src/components'
 import { renderShallow } from 'lib/test-helpers'
 import React from 'react'
 import { expect } from 'chai'
@@ -23,9 +23,15 @@ describe('App', () => {
       )
     })
 
-    it('renders the typing box', () => {
+    it('renders <TypingBox>', () => {
       expect(component).to.include(
         <TypingBox />
+      )
+    })
+
+    it('renders <Timer>', () => {
+      expect(component).to.include(
+        <Timer />
       )
     })
 

@@ -1,5 +1,7 @@
 import { PropTypes } from 'react'
 
+export const timeRemaining = PropTypes.number
+
 export const word = PropTypes.string
 
 export const words = PropTypes.arrayOf(word)
