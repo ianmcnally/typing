@@ -1,5 +1,5 @@
 import { App } from '../app'
-import { Words, TypingBox } from 'src/components'
+import { Prompt, TypingBox } from 'src/components'
 import { renderShallow } from 'src/test-helpers/lib'
 import React from 'react'
 import { expect } from 'chai'
@@ -17,9 +17,9 @@ describe('App', () => {
       component = output
     })
 
-    it('renders <Words>', () => {
+    it('renders <Prompt>', () => {
       expect(component).to.include(
-        <Words />
+        <Prompt />
       )
     })
 

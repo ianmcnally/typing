@@ -1,11 +1,11 @@
 import React from 'react'
-import WordsConnected, { Words } from '../words'
+import PromptConnected, { Prompt } from '../prompt'
 import { Word } from 'src/components'
 import { renderShallow } from 'src/test-helpers/lib'
 import { createNewStore } from 'src/store'
 import { expect } from 'chai'
 
-describe('<Words>', () => {
+describe('<Prompt>', () => {
 
   context('when it is rendered', () => {
     const words = ['hey', 'ian']
@@ -13,7 +13,7 @@ describe('<Words>', () => {
     let component
 
     before(() => {
-      const { output } = renderShallow(<Words words={words} submittedWords={submittedWords} />)
+      const { output } = renderShallow(<Prompt words={words} submittedWords={submittedWords} />)
       component = output
     })
 
@@ -37,12 +37,12 @@ describe('<Words>', () => {
 
     before(() => {
       const store = createNewStore({ words, submittedWords })
-      const { output } = renderShallow(<WordsConnected store={store} />)
+      const { output } = renderShallow(<PromptConnected store={store} />)
       component = output
     })
 
-    it('renders <Words>', () => {
-      expect(component.type).to.equal(Words)
+    it('renders <Prompt>', () => {
+      expect(component.type).to.equal(Prompt)
     })
 
     it('renders with state.words', () => {
