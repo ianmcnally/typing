@@ -1,25 +1,34 @@
 import { TestScheduler } from 'rx'
+import * as scheduler from 'src/lib/scheduler'
 import { start } from '../timer'
 import { expect } from 'chai'
+import { stub } from 'sinon'
 import first from 'lodash.first'
 import last from 'lodash.last'
 
 describe('lib/timer', () => {
 
   describe('start', () => {
-    const scheduler = new TestScheduler()
     const output = []
     const duration = 60
 
     before(done => {
-      start(duration, scheduler)
+      const testScheduler = new TestScheduler()
+
+      stub(scheduler, 'get').returns(testScheduler)
+
+      start(duration)
         .subscribe(
           x => output.push(x),
           () => {},
           done
         )
 
-      scheduler.advanceBy((duration + 1) * 1000)
+      testScheduler.advanceBy((duration + 1) * 1000)
+    })
+
+    after(() => {
+      scheduler.get.restore()
     })
 
     it(`returns a decrementing sequence from ${duration} to 0 over ${duration} seconds`, () => {
