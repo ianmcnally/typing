@@ -1,2 +1,5 @@
 export const ADVANCE_A_WORD = 'ADVANCE_A_WORD'
+export const ROUND_ENDED = 'ROUND_ENDED'
 export const SUBMISSION_GRADED = 'SUBMISSION_GRADED'
+export const TIME_ADVANCED = 'TIME_ADVANCED'
+

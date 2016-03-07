@@ -1,4 +1,5 @@
-import { SUBMISSION_GRADED } from 'src/action-types'
+import { ROUND_ENDED, SUBMISSION_GRADED, TIME_ADVANCED } from 'src/action-types'
+import { start as timerStart } from 'src/lib/timer'
 
 const submissionGraded = (submittedValue, correctValue) => ({
   type: SUBMISSION_GRADED,
@@ -21,3 +22,21 @@ export const advanceAWord = submission => (
   }
 )
 
+const timeAdvanced = timeRemaining => ({
+  type: TIME_ADVANCED,
+  timeRemaining
+})
+
+const roundEnded = () => ({
+  type: ROUND_ENDED
+})
+
+export const startTimer = () => (
+  dispatch => {
+    timerStart().subscribe(
+      timeRemaining => dispatch(timeAdvanced(timeRemaining)),
+      () => {},
+      () => dispatch(roundEnded())
+    )
+  }
+)
