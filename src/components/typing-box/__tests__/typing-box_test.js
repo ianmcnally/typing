@@ -1,10 +1,8 @@
 import React from 'react'
 import { TypingBox } from '../typing-box'
 import * as actions from 'src/actions'
-import { findDOMNode } from 'react-dom'
 import { expect } from 'chai'
 import { renderShallow } from 'lib/test-helpers'
-import { renderIntoDocument, Simulate } from 'react-addons-test-utils'
 import defer from 'lodash.defer'
 import { spy, stub } from 'sinon'
 
@@ -32,18 +30,14 @@ describe('<TypingBox>', () => {
   context('when the spacebar is pressed', () => {
     const dispatch = spy()
     const value = 'zzz'
-    let input
+    const input = { value }
 
     before(done => {
       stub(actions, 'advanceAWord').withArgs(value).returns({ value })
 
-      const component = renderIntoDocument(<TypingBox dispatch={dispatch} />)
-      input = findDOMNode(component)
+      const component = renderShallow(<TypingBox dispatch={dispatch} />).output
 
-      input.value = value
-      Simulate.change(input)
-
-      Simulate.keyDown(input, { keyCode: 32 })
+      component.props.onKeyDown({ keyCode: 32, target: input })
 
       defer(done)
     })
