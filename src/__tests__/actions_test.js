@@ -104,9 +104,9 @@ describe('action creators', () => {
       })
 
       it(`dispatches ${TIME_ADVANCED} with the remaining time over the sequence`, () => {
-        const sixtyToZero = range(60, -1, -1)
+        const fiftyNineToZero = range(59, -1, -1)
 
-        sixtyToZero.map((timeRemaining, idx) => {
+        fiftyNineToZero.map((timeRemaining, idx) => {
           testScheduler.advanceBy((idx + 1) * 1000)
 
           expect(dispatch).to.have.been.calledWith({
@@ -129,13 +129,13 @@ describe('action creators', () => {
 
         startTimer()(dispatch)
 
-        testScheduler.advanceBy(60 * 1000)
+        testScheduler.advanceBy(59 * 1000)
 
         expect(dispatch).not.to.have.been.calledWith({
           type: ROUND_ENDED
         })
 
-        testScheduler.advanceBy(61 * 1000)
+        testScheduler.advanceBy(60 * 1000)
       })
 
       after(() => {

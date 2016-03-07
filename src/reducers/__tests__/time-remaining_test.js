@@ -4,6 +4,21 @@ import { expect } from 'chai'
 
 describe('timeRemaining reducer', () => {
 
+  context('when there is no previous state', () => {
+    let state
+
+    before(() => {
+      const store = createNewStore()
+
+      state = store.getState().timeRemaining
+    })
+
+    it('defaults to 60', () => {
+      expect(state).to.equal(60)
+    })
+
+  })
+
   context(`when ${TIME_ADVANCED} is dispatched`, () => {
     const timeRemaining = 59
     let state
@@ -38,8 +53,8 @@ describe('timeRemaining reducer', () => {
       state = store.getState().timeRemaining
     })
 
-    it('the state is null', () => {
-      expect(state).to.be.null
+    it('the state is zero', () => {
+      expect(state).to.equal(0)
     })
 
   })

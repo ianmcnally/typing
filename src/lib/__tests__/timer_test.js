@@ -31,9 +31,9 @@ describe('lib/timer', () => {
       scheduler.get.restore()
     })
 
-    it(`returns a decrementing sequence from ${duration} to 0 over ${duration} seconds`, () => {
-      expect(output).to.have.length(duration + 1)
-      expect(first(output)).to.equal(duration)
+    it(`returns a decrementing sequence from ${duration - 1} to 0 over ${duration} seconds`, () => {
+      expect(output).to.have.length(duration)
+      expect(first(output)).to.equal(duration - 1)
       expect(last(output)).to.equal(0)
     })
 

@@ -6,7 +6,7 @@ const Countdown = ({ timeRemaining }) => (
 )
 
 Countdown.propTypes = {
-  timeRemaining: AppPropTypes.timeRemaining
+  timeRemaining: AppPropTypes.timeRemaining.isRequired
 }
 
 export default Countdown

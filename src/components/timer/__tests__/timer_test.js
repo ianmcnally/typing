@@ -42,7 +42,7 @@ describe('<Timer>', () => {
     before(() => {
       stub(actions, 'startTimer').returns({})
 
-      const component = renderShallow(<Timer dispatch={dispatch} />).output
+      const component = renderShallow(<Timer dispatch={dispatch} timeRemaining={0} />).output
       const startButton = findWithType(component, StartButton)
 
       startButton.props.onClick()

@@ -18,7 +18,7 @@ export const Timer = ({ dispatch, timeRemaining }) => (
 
 Timer.propTypes = {
   dispatch: PropTypes.func,
-  timeRemaining: AppPropTypes.timeRemaining
+  timeRemaining: AppPropTypes.timeRemaining.isRequired
 }
 
 const mapStateToProps = ({ timeRemaining }) => ({ timeRemaining })
