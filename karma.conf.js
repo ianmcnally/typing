@@ -17,6 +17,11 @@ module.exports = function (config) {
         served: true
       }
     ],
+    client: {
+      mocha: {
+        timeout: 100
+      }
+    },
     webpack: webpackConfig,
     webpackMiddleware: {
       stats: {
