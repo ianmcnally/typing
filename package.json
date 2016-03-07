@@ -2,7 +2,7 @@
   "name": "typing",
   "version": "0.0.6",
   "description": "A typing game",
-  "main": "src/app.jsx",
+  "main": "src/index.js",
   "dependencies": {
     "classnames": "^2.2.3",
     "lodash.defer": "^4.0.0",
@@ -56,7 +56,7 @@
     "webpack-hot-middleware": "^2.6.0"
   },
   "config": {
-    "lint": "dev-server src webpack.config.js karma.conf.js"
+    "lint": "lib dev-server src webpack.config.js karma.conf.js"
   },
   "scripts": {
     "ci": "npm run lint && npm run test:travisci",

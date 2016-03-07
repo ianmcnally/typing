@@ -1,6 +1,6 @@
 import { App } from '../app'
 import { Prompt, TypingBox } from 'src/components'
-import { renderShallow } from 'src/test-helpers/lib'
+import { renderShallow } from 'lib/test-helpers'
 import React from 'react'
 import { expect } from 'chai'
 import { spy } from 'sinon'

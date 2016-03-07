@@ -11,7 +11,7 @@ module.exports = function (config) {
       'node_modules/es5-shim/es5-shim.min.js',
       'node_modules/react/dist/react.min.js',
       {
-        pattern: 'src/test-helpers/test-index.js',
+        pattern: 'lib/test-helpers/test-index.js',
         watched: false,
         included: true,
         served: true
@@ -25,7 +25,7 @@ module.exports = function (config) {
       noInfo: true
     },
     preprocessors: {
-      'src/test-helpers/test-index.js': ['webpack']
+      'lib/test-helpers/test-index.js': ['webpack']
     },
     reporters: ['mocha', 'notify'],
     port: 9876,

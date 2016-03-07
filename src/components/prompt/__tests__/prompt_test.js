@@ -1,7 +1,7 @@
 import React from 'react'
 import PromptConnected, { Prompt } from '../prompt'
 import { Word } from 'src/components'
-import { renderShallow } from 'src/test-helpers/lib'
+import { renderShallow } from 'lib/test-helpers'
 import { createNewStore } from 'src/store'
 import { expect } from 'chai'
 

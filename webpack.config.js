@@ -8,7 +8,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 var PATHS = {
   OUTPUT: path.join(__dirname, 'dist'),
-  SOURCE: path.join(__dirname, 'src')
+  SOURCE: path.join(__dirname, 'src'),
+  LIB: path.join(__dirname, 'lib')
 }
 
 var config = {
@@ -39,7 +40,8 @@ var config = {
     extensions: ['', '.js', '.jsx'],
     alias: {
       sinon: 'sinon/pkg/sinon',
-      src: PATHS.SOURCE
+      src: PATHS.SOURCE,
+      lib: PATHS.LIB
     }
   },
   plugins: [

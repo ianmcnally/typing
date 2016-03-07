@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderShallow } from 'src/test-helpers/lib'
+import { renderShallow } from 'lib/test-helpers'
 import Word from '../word'
 import { expect } from 'chai'
 
