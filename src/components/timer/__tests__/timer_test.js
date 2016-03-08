@@ -18,7 +18,7 @@ describe('<Timer>', () => {
     let component
 
     before(() => {
-      const { output } = renderShallow(<Timer timeRemaining={timeRemaining} />)
+      const { output } = renderShallow(<Timer timeRemaining={timeRemaining} dispatch={spy()} />)
       component = output
     })
 
