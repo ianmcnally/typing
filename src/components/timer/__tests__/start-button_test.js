@@ -11,7 +11,7 @@ describe('Timer <StartButton>', () => {
     let component
 
     before(() => {
-      const { output } = renderShallow(<StartButton onClick={onClick} />)
+      const { output } = renderShallow(<StartButton onClick={onClick} disabled />)
       component = output
     })
 
