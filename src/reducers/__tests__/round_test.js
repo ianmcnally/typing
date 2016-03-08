@@ -20,6 +20,10 @@ describe('round reducer', () => {
       expect(state).to.contain({ started: true })
     })
 
+    it('returns the state with ended=false', () => {
+      expect(state).to.contain({ ended: false })
+    })
+
   })
 
   context(`when ${ROUND_ENDED} is dispatched`, () => {
@@ -36,6 +40,10 @@ describe('round reducer', () => {
 
     it('returns the state with started=false', () => {
       expect(state).to.contain({ started: false })
+    })
+
+    it('returns the state with ended=true', () => {
+      expect(state).to.contain({ ended: true })
     })
 
   })
@@ -69,7 +77,7 @@ describe('round reducer', () => {
     })
 
     it('returns an initial state', () => {
-      expect(state).to.eql({ started: false })
+      expect(state).to.eql({ started: false, ended: false })
     })
 
   })
