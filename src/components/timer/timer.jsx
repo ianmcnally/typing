@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import Countdown from './countdown'
 import StartButton from './start-button'
-import { startTimer } from 'src/actions'
+import { startTimer } from 'src/actions/start-timer'
 import * as AppPropTypes from 'src/prop-types'
 import { connect } from 'react-redux'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { TypingBox } from '../typing-box'
-import * as actions from 'src/actions'
+import * as wordActions from 'src/actions/advance-word'
 import { expect } from 'chai'
 import { renderShallow } from 'lib/test-helpers'
 import defer from 'lodash.defer'
@@ -33,7 +33,7 @@ describe('<TypingBox>', () => {
     const input = { value }
 
     before(done => {
-      stub(actions, 'advanceAWord').withArgs(value).returns({ value })
+      stub(wordActions, 'advanceWord').withArgs(value).returns({ value })
 
       const component = renderShallow(<TypingBox dispatch={dispatch} />).output
 
@@ -43,7 +43,7 @@ describe('<TypingBox>', () => {
     })
 
     after(() => {
-      actions.advanceAWord.restore()
+      wordActions.advanceWord.restore()
     })
 
     it('clears the input text', () => {
@@ -51,7 +51,7 @@ describe('<TypingBox>', () => {
     })
 
     it('dispatches a word advancement action', () => {
-      expect(dispatch).to.have.been.calledWith(actions.advanceAWord(value))
+      expect(dispatch).to.have.been.calledWith(wordActions.advanceWord(value))
     })
 
   })

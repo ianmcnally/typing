@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { advanceAWord } from 'src/actions'
+import { advanceWord } from 'src/actions/advance-word'
 import { SPACEBAR_KEY_CODE } from 'src/constants'
 import defer from 'lodash.defer'
 import styles from './typing-box.css'
@@ -24,7 +24,7 @@ export class TypingBox extends Component {
     if (keyCode !== SPACEBAR_KEY_CODE)
       return
 
-    this.props.dispatch(advanceAWord(target.value))
+    this.props.dispatch(advanceWord(target.value))
 
     this._clearInput(target)
   }

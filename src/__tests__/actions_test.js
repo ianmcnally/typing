@@ -1,4 +1,5 @@
-import { advanceAWord, startTimer } from '../actions'
+import * as timerActions from '../actions/start-timer'
+import { advanceWord } from '../actions/advance-word'
 import * as scheduler from 'src/lib/scheduler'
 import { spy, stub } from 'sinon'
 import range from 'lodash.range'
@@ -13,7 +14,7 @@ import { TestScheduler } from 'rx'
 
 describe('action creators', () => {
 
-  describe('advanceAWord', () => {
+  describe('advanceWord', () => {
 
     context('when a word can be submitted', () => {
 
@@ -21,12 +22,13 @@ describe('action creators', () => {
         const dispatch = spy()
         const getState = () => ({
           submittedWords: ['a'],
-          words: ['a', 'b']
+          words: ['a', 'b'],
+          round: { started: true }
         })
         const submittedValue = 'b'
 
         before(() => {
-          advanceAWord(submittedValue)(dispatch, getState)
+          advanceWord(submittedValue)(dispatch, getState)
         })
 
         it(`dispatches ${SUBMISSION_GRADED} with the value and isCorrect=true`, () => {
@@ -45,12 +47,13 @@ describe('action creators', () => {
         const dispatch = spy()
         const getState = () => ({
           submittedWords: ['a'],
-          words: ['a', 'b']
+          words: ['a', 'b'],
+          round: { started: true }
         })
         const submittedValue = 'not-b'
 
         before(() => {
-          advanceAWord(submittedValue)(dispatch, getState)
+          advanceWord(submittedValue)(dispatch, getState)
         })
 
         it(`dispatches ${SUBMISSION_GRADED} with the value and isCorrect=false`, () => {
@@ -71,16 +74,47 @@ describe('action creators', () => {
       const dispatch = spy()
       const getState = () => ({
         submittedWords: ['a', 'not-b'],
-        words: ['a', 'b']
+        words: ['a', 'b'],
+        round: { started: true }
       })
       const submittedValue = 'c'
 
       before(() => {
-        advanceAWord(submittedValue)(dispatch, getState)
+        advanceWord(submittedValue)(dispatch, getState)
       })
 
       it('does not dispatch an action', () => {
-        expect(dispatch).not.to.have.been.called
+        expect(dispatch).not.to.have.been.calledWith({
+          type: SUBMISSION_GRADED,
+          submission: {
+            value: submittedValue,
+            isCorrect: false
+          }
+        })
+      })
+
+    })
+
+    context('when the round has not started yet', () => {
+      const dispatch = spy()
+      const getState = () => ({
+        round: { started: false },
+        words: [],
+        submittedWords: []
+      })
+      const submission = 'zzz'
+
+      before(() => {
+        stub(timerActions, 'startTimer').returns({ type: 'OH_YEAH_STARTED_TIMER' })
+        advanceWord(submission)(dispatch, getState)
+      })
+
+      after(() => {
+        timerActions.startTimer.restore()
+      })
+
+      it('dispatches startTimer()', () => {
+        expect(dispatch).to.have.been.calledWith(timerActions.startTimer())
       })
 
     })
@@ -96,7 +130,7 @@ describe('action creators', () => {
 
         stub(scheduler, 'get').returns(testScheduler)
 
-        startTimer()(dispatch)
+        timerActions.startTimer()(dispatch)
       })
 
       after(() => {
@@ -120,7 +154,7 @@ describe('action creators', () => {
 
         stub(scheduler, 'get').returns(testScheduler)
 
-        startTimer()(dispatch)
+        timerActions.startTimer()(dispatch)
       })
 
       after(() => {
@@ -151,7 +185,7 @@ describe('action creators', () => {
 
         stub(scheduler, 'get').returns(testScheduler)
 
-        startTimer()(dispatch)
+        timerActions.startTimer()(dispatch)
 
         testScheduler.advanceBy(59 * 1000)
 

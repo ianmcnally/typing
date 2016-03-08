@@ -1,6 +1,6 @@
 import React from 'react'
+import * as timerActions from 'src/actions/start-timer'
 import { renderShallow } from 'lib/test-helpers'
-import * as actions from 'src/actions'
 import TimerConnected, { Timer } from '../timer'
 import StartButton from '../start-button'
 import Countdown from '../countdown'
@@ -76,7 +76,7 @@ describe('<Timer>', () => {
     const round = { started: false }
 
     before(() => {
-      stub(actions, 'startTimer').returns({})
+      stub(timerActions, 'startTimer').returns({})
 
       const component = renderShallow(<Timer dispatch={dispatch} round={round} timeRemaining={0} />).output
       const startButton = findWithType(component, StartButton)
@@ -85,12 +85,12 @@ describe('<Timer>', () => {
     })
 
     after(() => {
-      actions.startTimer.restore()
+      timerActions.startTimer.restore()
     })
 
     it('dispatches startTimer()', () => {
-      expect(actions.startTimer).to.have.been.called
-      expect(dispatch).to.have.been.calledWith(actions.startTimer())
+      expect(timerActions.startTimer).to.have.been.called
+      expect(dispatch).to.have.been.calledWith(timerActions.startTimer())
     })
 
   })
