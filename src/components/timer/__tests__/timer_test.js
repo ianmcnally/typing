@@ -15,10 +15,11 @@ describe('<Timer>', () => {
 
   context('when it renders', () => {
     const timeRemaining = 5
+    const round = { started: false }
     let component
 
     before(() => {
-      const { output } = renderShallow(<Timer timeRemaining={timeRemaining} dispatch={spy()} />)
+      const { output } = renderShallow(<Timer timeRemaining={timeRemaining} dispatch={spy()} round={round} />)
       component = output
     })
 
@@ -30,7 +31,41 @@ describe('<Timer>', () => {
 
     it('renders <StartButton>', () => {
       expect(component).to.include(
-        <StartButton onClick={noRefCheck} />
+        <StartButton disabled={false} onClick={noRefCheck} />
+      )
+    })
+
+  })
+
+  context('when the round is not started', () => {
+    const timeRemaining = 5
+    const round = { started: false }
+    let component
+
+    before(() => {
+      component = renderShallow(<Timer timeRemaining={timeRemaining} dispatch={spy()} round={round} />).output
+    })
+
+    it('renders <StartButton> with disabled=false', () => {
+      expect(component).to.include(
+        <StartButton disabled={false} onClick={noRefCheck} />
+      )
+    })
+
+  })
+
+  context('when the round has started', () => {
+    const timeRemaining = 5
+    const round = { started: true }
+    let component
+
+    before(() => {
+      component = renderShallow(<Timer timeRemaining={timeRemaining} dispatch={spy()} round={round} />).output
+    })
+
+    it('renders <StartButton> with disabled=true', () => {
+      expect(component).to.include(
+        <StartButton disabled={true} onClick={noRefCheck} /> //eslint-disable-line react/jsx-boolean-value
       )
     })
 
@@ -38,11 +73,12 @@ describe('<Timer>', () => {
 
   context('when <StartButton> is clicked', () => {
     const dispatch = spy()
+    const round = { started: false }
 
     before(() => {
       stub(actions, 'startTimer').returns({})
 
-      const component = renderShallow(<Timer dispatch={dispatch} timeRemaining={0} />).output
+      const component = renderShallow(<Timer dispatch={dispatch} round={round} timeRemaining={0} />).output
       const startButton = findWithType(component, StartButton)
 
       startButton.props.onClick()
@@ -61,10 +97,11 @@ describe('<Timer>', () => {
 
   context('when it is connected', () => {
     const timeRemaining = 100
+    const round = { started: false }
     let component
 
     before(() => {
-      const store = createNewStore({ timeRemaining })
+      const store = createNewStore({ round, timeRemaining })
       const { output } = renderShallow(<TimerConnected store={store} />)
       component = output
     })
@@ -77,6 +114,11 @@ describe('<Timer>', () => {
     it('injects state.timeRemaining as props.timeRemaining', () => {
       expect(component.props.timeRemaining).to.be.ok
       expect(component.props.timeRemaining).to.eql(timeRemaining)
+    })
+
+    it('injects state.round as state.round', () => {
+      expect(component.props.round).to.be.ok
+      expect(component.props.round).to.equal(round)
     })
 
   })

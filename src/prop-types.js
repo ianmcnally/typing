@@ -1,5 +1,9 @@
 import { PropTypes } from 'react'
 
+export const round = PropTypes.shape({
+  started: PropTypes.bool.isRequired
+})
+
 export const timeRemaining = PropTypes.number
 
 export const word = PropTypes.string

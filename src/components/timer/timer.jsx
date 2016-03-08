@@ -9,19 +9,20 @@ const onStartButtonClick = dispatch => (
   () => dispatch(startTimer())
 )
 
-export const Timer = ({ dispatch, timeRemaining }) => (
+export const Timer = ({ dispatch, round, timeRemaining }) => (
   <article>
     <Countdown timeRemaining={timeRemaining} />
-    <StartButton onClick={onStartButtonClick(dispatch)} />
+    <StartButton disabled={round.started} onClick={onStartButtonClick(dispatch)} />
   </article>
 )
 
 Timer.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  round: AppPropTypes.round.isRequired,
   timeRemaining: AppPropTypes.timeRemaining.isRequired
 }
 
-const mapStateToProps = ({ timeRemaining }) => ({ timeRemaining })
+const mapStateToProps = ({ round, timeRemaining }) => ({ round, timeRemaining })
 
 export default connect(mapStateToProps)(Timer)
 
