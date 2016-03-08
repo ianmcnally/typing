@@ -1,4 +1,4 @@
-import { ROUND_STARTED } from 'src/action-types'
+import { ROUND_ENDED, ROUND_STARTED } from 'src/action-types'
 import { createNewStore } from 'src/store'
 import { expect } from 'chai'
 
@@ -18,6 +18,24 @@ describe('round reducer', () => {
 
     it('returns the state with started=true', () => {
       expect(state).to.contain({ started: true })
+    })
+
+  })
+
+  context(`when ${ROUND_ENDED} is dispatched`, () => {
+    let state
+
+    before(() => {
+      const store = createNewStore()
+      store.dispatch({
+        type: ROUND_ENDED
+      })
+
+      state = store.getState().round
+    })
+
+    it('returns the state with started=false', () => {
+      expect(state).to.contain({ started: false })
     })
 
   })
