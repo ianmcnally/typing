@@ -1,20 +1,21 @@
-import { App } from '../app'
+import AppConnected, { App } from '../app'
 import { Prompt, TypingBox, Timer } from 'src/components'
 import { renderShallow } from 'lib/test-helpers'
 import React from 'react'
+import { Provider } from 'react-redux'
+import store from 'src/store'
 import { expect } from 'chai'
 import { spy } from 'sinon'
 
-describe('App', () => {
+describe('<App>', () => {
 
-  describe('<App>', () => {
+  context('when it is rendered', () => {
     const words = ['Charles', 'in', 'Charge']
     const dispatch = spy()
     let component
 
     before(() => {
-      const { output } = renderShallow(<App words={words} dispatch={dispatch} />)
-      component = output
+      component = renderShallow(<App words={words} dispatch={dispatch} />).output
     })
 
     it('renders <Prompt>', () => {
@@ -32,6 +33,23 @@ describe('App', () => {
     it('renders <Timer>', () => {
       expect(component).to.include(
         <Timer />
+      )
+    })
+
+  })
+
+  context('when it is connected', () => {
+    let component
+
+    before(() => {
+      component = renderShallow(<AppConnected />).output
+    })
+
+    it('renders a <Provider> wrapped <App>', () => {
+      expect(component).to.eql(
+        <Provider store={store}>
+          <App />
+        </Provider>
       )
     })
 
