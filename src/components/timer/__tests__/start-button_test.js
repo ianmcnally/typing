@@ -42,6 +42,10 @@ describe('Timer <StartButton>', () => {
       expect(component.props.disabled).to.be.true
     })
 
+    it('adds a disabled class', () => {
+      expect(component.props.className).to.include('states__is-disabled')
+    })
+
   })
 
   context('when props.disabled=false', () => {
@@ -57,6 +61,9 @@ describe('Timer <StartButton>', () => {
       expect(component.props.disabled).to.be.false
     })
 
+    it('does not add a disabled class', () => {
+      expect(component.props.className).not.to.include('states__is-disabled')
+    })
   })
 })
 
