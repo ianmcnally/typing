@@ -2,4 +2,5 @@ export const ROUND_ENDED = 'ROUND_ENDED'
 export const ROUND_STARTED = 'ROUND_STARTED'
 export const SUBMISSION_GRADED = 'SUBMISSION_GRADED'
 export const TIME_ADVANCED = 'TIME_ADVANCED'
+export const RETRY = 'RETRY'
 
