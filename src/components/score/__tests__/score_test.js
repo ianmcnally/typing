@@ -31,7 +31,13 @@ describe('<Score>', () => {
     })
 
     it('displays the score', () => {
-      expect(component).to.eql(<pre>{JSON.stringify(scores, null, 2)}</pre>)
+      expect(component).to.eql(
+        <article>
+          <h3>Your score</h3>
+          <p>Correct: 1</p>
+          <p>Incorrect: 1</p>
+        </article>
+      )
     })
 
   })

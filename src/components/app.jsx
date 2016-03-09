@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { Prompt, Score, TypingBox, Timer } from 'src/components'
 import store from 'src/store'
 import 'normalize.css'
+import 'src/styles/colors.css'
 import styles from './app.css'
 
 export const App = () => (

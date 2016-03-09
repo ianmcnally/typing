@@ -1,13 +1,12 @@
 .word:after {
   content: ' '
-
 }
 
 .word--correct {
-  color: limegreen;
+  composes: color--correct from 'src/styles/colors.css';
 }
 
 .word--incorrect {
-  color: pink;
+  composes: color--incorrect from 'src/styles/colors.css';
 }
 

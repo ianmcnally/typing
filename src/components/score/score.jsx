@@ -4,9 +4,13 @@ import * as AppPropTypes from 'src/prop-types'
 import { connect } from 'react-redux'
 
 export const Score = ({ round, scores }) => (round.ended ?
-   <pre>{JSON.stringify(scores, null, 2)}</pre>
-   :
-   <span />
+  <article>
+   <h3>Your score</h3>
+   <p>Correct: {scores.correct}</p>
+   <p>Incorrect: {scores.incorrect}</p>
+  </article>
+ :
+ <span />
 )
 
 Score.propTypes = {
