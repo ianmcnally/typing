@@ -1,4 +1,5 @@
 import React from 'react'
+import { roundScore } from 'src/selectors'
 import * as AppPropTypes from 'src/prop-types'
 import { connect } from 'react-redux'
 
@@ -12,7 +13,10 @@ Score.propTypes = {
   round: AppPropTypes.round.isRequired
 }
 
-const mapStateToProps = ({ round }) => ({ round })
+const mapStateToProps = state => ({
+  round: state.round,
+  scores: roundScore(state)
+})
 
 export default connect(mapStateToProps)(Score)
 

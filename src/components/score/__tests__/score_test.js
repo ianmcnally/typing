@@ -36,7 +36,11 @@ describe('<Score>', () => {
 
   context('when it is connected', () => {
     const round = { started: true, ended: true }
-    const store = createNewStore({ round })
+    const submittedWords = [
+      { value: 'a', isCorrect: true },
+      { value: 'zzz', isCorrect: false }
+    ]
+    const store = createNewStore({ round, submittedWords })
     let component
 
     before(() => {
@@ -49,6 +53,14 @@ describe('<Score>', () => {
 
     it('injects state.round as props.round', () => {
       expect(component.props.round).to.equal(round)
+    })
+
+    it('calculates the round score as props.scores', () => {
+      expect(component.props.scores).to.be.ok
+      expect(component.props.scores).to.eql({
+        correct: 1,
+        incorrect: 1
+      })
     })
 
   })
