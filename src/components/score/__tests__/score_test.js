@@ -8,10 +8,11 @@ describe('<Score>', () => {
 
   context('when the round has not ended', () => {
     const round = { started: true, ended: false }
+    const scores = { correct: 0, incorrect: 0 }
     let component
 
     before(() => {
-      component = renderShallow(<Score round={round} />).output
+      component = renderShallow(<Score round={round} scores={scores} />).output
     })
 
     it('renders an empty span', () => {
@@ -22,14 +23,15 @@ describe('<Score>', () => {
 
   context('when the round has ended', () => {
     const round = { started: true, ended: true }
+    const scores = { correct: 1, incorrect: 1 }
     let component
 
     before(() => {
-      component = renderShallow(<Score round={round} />).output
+      component = renderShallow(<Score round={round} scores={scores} />).output
     })
 
     it('displays the score', () => {
-      expect(component).to.eql(<p>The score</p>)
+      expect(component).to.eql(<pre>{JSON.stringify(scores, null, 2)}</pre>)
     })
 
   })

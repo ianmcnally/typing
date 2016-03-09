@@ -5,6 +5,11 @@ export const round = PropTypes.shape({
   ended: PropTypes.bool.isRequired
 })
 
+export const scores = PropTypes.shape({
+  correct: PropTypes.number.isRequired,
+  incorrect: PropTypes.number.isRequired
+})
+
 export const timeRemaining = PropTypes.number
 
 export const word = PropTypes.string
