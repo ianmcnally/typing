@@ -37,7 +37,24 @@ describe('<Timer>', () => {
 
   })
 
-  context('when the round is not started', () => {
+  context('when the round has started', () => {
+    const timeRemaining = 5
+    const round = { started: true }
+    let component
+
+    before(() => {
+      component = renderShallow(<Timer timeRemaining={timeRemaining} dispatch={spy()} round={round} />).output
+    })
+
+    it('renders <StartButton> with disabled=true', () => {
+      expect(component).to.include(
+        <StartButton disabled={true} onClick={noRefCheck} /> //eslint-disable-line react/jsx-boolean-value
+      )
+    })
+
+  })
+
+  context('when the round has not started', () => {
     const timeRemaining = 5
     const round = { started: false }
     let component
@@ -54,9 +71,9 @@ describe('<Timer>', () => {
 
   })
 
-  context('when the round has started', () => {
+  context('when the round has ended', () => {
     const timeRemaining = 5
-    const round = { started: true }
+    const round = { ended: true }
     let component
 
     before(() => {

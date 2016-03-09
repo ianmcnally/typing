@@ -9,10 +9,12 @@ const onStartButtonClick = dispatch => (
   () => dispatch(startTimer())
 )
 
+const shouldDisableStartForRound = round => Boolean(round.started || round.ended)
+
 export const Timer = ({ dispatch, round, timeRemaining }) => (
   <article>
     <Countdown timeRemaining={timeRemaining} />
-    <StartButton disabled={round.started} onClick={onStartButtonClick(dispatch)} />
+    <StartButton disabled={shouldDisableStartForRound(round)} onClick={onStartButtonClick(dispatch)} />
   </article>
 )
 
