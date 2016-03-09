@@ -34,8 +34,8 @@ describe('<Score>', () => {
       expect(component).to.eql(
         <article>
           <h3>Your score</h3>
-          <p>Correct: 1</p>
-          <p>Incorrect: 1</p>
+          <p className={'score__correct-score colors__color--correct'}>Correct: 1</p>
+          <p className={'score__incorrect-score colors__color--incorrect'}>Incorrect: 1</p>
         </article>
       )
     })

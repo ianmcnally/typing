@@ -1,0 +1,8 @@
+.correct-score {
+  composes: color--correct from 'src/styles/colors.css';
+}
+
+.incorrect-score {
+  composes: color--incorrect from 'src/styles/colors.css';
+}
+
