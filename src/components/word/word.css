@@ -2,11 +2,11 @@
   content: ' '
 }
 
-.word--correct {
+.correct-word {
   composes: color--correct from 'src/styles/colors.css';
 }
 
-.word--incorrect {
+.incorrect-word {
   composes: color--incorrect from 'src/styles/colors.css';
 }
 

@@ -34,7 +34,7 @@ describe('<Word>', () => {
 
       it('has a className to reflect its correctness', () => {
         expect(component).to.eql(
-          <span className='word__word word__word--correct colors__color--correct'>{value}</span>
+          <span className='word__word word__correct-word colors__color--correct'>{value}</span>
         )
       })
 
@@ -52,7 +52,7 @@ describe('<Word>', () => {
 
       it('has a className to reflect its incorrectness', () => {
         expect(component).to.eql(
-          <span className='word__word word__word--incorrect colors__color--incorrect'>{value}</span>
+          <span className='word__word word__incorrect-word colors__color--incorrect'>{value}</span>
         )
       })
 
