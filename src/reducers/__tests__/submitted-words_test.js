@@ -1,5 +1,5 @@
 import { createNewStore } from 'src/store'
-import { SUBMISSION_GRADED } from 'src/action-types'
+import { RETRY, SUBMISSION_GRADED } from 'src/action-types'
 import { expect } from 'chai'
 
 describe('submittedWords reducer', () => {
@@ -25,6 +25,27 @@ describe('submittedWords reducer', () => {
 
     it('adds the action.submission to the state', () => {
       expect(state).to.contain(submission)
+    })
+
+  })
+
+  context(`when ${RETRY} is dispatched`, () => {
+    const submittedWords = [{
+      value: 'someword',
+      isCorrect: true
+    }]
+    let state
+
+    before(() => {
+      const store = createNewStore({ submittedWords })
+
+      store.dispatch({ type: RETRY })
+
+      state = store.getState().submittedWords
+    })
+
+    it('clears the submitted words', () => {
+      expect(state).to.eql([])
     })
 
   })
