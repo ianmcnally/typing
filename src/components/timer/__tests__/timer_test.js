@@ -3,6 +3,7 @@ import * as timerActions from 'src/actions/start-timer'
 import { renderShallow } from 'lib/test-helpers'
 import TimerConnected, { Timer } from '../timer'
 import StartButton from '../start-button'
+import RetryButton from '../retry-button'
 import Countdown from '../countdown'
 import { createNewStore } from 'src/store'
 import { expect } from 'chai'
@@ -32,6 +33,12 @@ describe('<Timer>', () => {
     it('renders <StartButton>', () => {
       expect(component).to.include(
         <StartButton disabled={false} onClick={noRefCheck} />
+      )
+    })
+
+    it('renders <RetryButton>', () => {
+      expect(component).to.include(
+        <RetryButton />
       )
     })
 
