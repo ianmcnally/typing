@@ -1,6 +1,7 @@
 import { TIME_ADVANCED, ROUND_ENDED } from 'src/action-types'
+import { ROUND_DURATION } from 'src/constants'
 
-const timeRemaining = (state = 60, action) => {
+const timeRemaining = (state = ROUND_DURATION, action) => {
   const { type, timeRemaining } = action
 
   switch (type) {

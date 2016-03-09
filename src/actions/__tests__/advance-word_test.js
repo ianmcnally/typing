@@ -6,7 +6,7 @@ import {
 } from 'src/action-types'
 import { expect } from 'chai'
 
-describe('advanceWord', () => {
+describe('advanceWord action', () => {
 
   context('when a word can be submitted', () => {
 

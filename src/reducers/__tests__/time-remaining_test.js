@@ -1,6 +1,7 @@
 import { createNewStore } from 'src/store'
 import { TIME_ADVANCED, ROUND_ENDED } from 'src/action-types'
 import { expect } from 'chai'
+import { ROUND_DURATION } from 'src/constants'
 
 describe('timeRemaining reducer', () => {
 
@@ -13,8 +14,8 @@ describe('timeRemaining reducer', () => {
       state = store.getState().timeRemaining
     })
 
-    it('defaults to 60', () => {
-      expect(state).to.equal(60)
+    it(`defaults to ${ROUND_DURATION}`, () => {
+      expect(state).to.equal(ROUND_DURATION)
     })
 
   })

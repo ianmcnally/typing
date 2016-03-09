@@ -7,10 +7,11 @@ import {
   ROUND_ENDED,
   TIME_ADVANCED
 } from 'src/action-types'
+import { ROUND_DURATION } from 'src/constants'
 import { expect } from 'chai'
 import { TestScheduler } from 'rx'
 
-describe('startTimer', () => {
+describe('startTimer action', () => {
   context('before it starts the sequence', () => {
     const dispatch = spy()
 
@@ -51,9 +52,9 @@ describe('startTimer', () => {
     })
 
     it(`dispatches ${TIME_ADVANCED} with the remaining time over the sequence`, () => {
-      const fiftyNineToZero = range(59, -1, -1)
+      const durationToZero = range(ROUND_DURATION - 1, -1, 1)
 
-      fiftyNineToZero.map((timeRemaining, idx) => {
+      durationToZero.map((timeRemaining, idx) => {
         testScheduler.advanceBy((idx + 1) * 1000)
 
         expect(dispatch).to.have.been.calledWith({
@@ -76,13 +77,13 @@ describe('startTimer', () => {
 
       timerActions.startTimer()(dispatch)
 
-      testScheduler.advanceBy(59 * 1000)
+      testScheduler.advanceBy((ROUND_DURATION - 1) * 1000)
 
       expect(dispatch).not.to.have.been.calledWith({
         type: ROUND_ENDED
       })
 
-      testScheduler.advanceBy(60 * 1000)
+      testScheduler.advanceBy(ROUND_DURATION * 1000)
     })
 
     after(() => {
