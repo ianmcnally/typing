@@ -1,4 +1,4 @@
-import { ROUND_ENDED, ROUND_STARTED } from 'src/action-types'
+import { RETRY, ROUND_ENDED, ROUND_STARTED } from 'src/action-types'
 
 const initialState = { started: false, ended: false }
 
@@ -10,6 +10,8 @@ const round = (state = initialState, action) => {
     return { ...state, started: true, ended: false }
   case ROUND_ENDED:
     return { ...state, started: false, ended: true }
+  case RETRY:
+    return initialState
   default:
     return state
   }

@@ -1,4 +1,4 @@
-import { ROUND_ENDED, ROUND_STARTED } from 'src/action-types'
+import { RETRY, ROUND_ENDED, ROUND_STARTED } from 'src/action-types'
 import { createNewStore } from 'src/store'
 import { expect } from 'chai'
 
@@ -44,6 +44,29 @@ describe('round reducer', () => {
 
     it('returns the state with ended=true', () => {
       expect(state).to.contain({ ended: true })
+    })
+
+  })
+
+  context(`when ${RETRY} is dispatched`, () => {
+    const round = { started: true, ended: true }
+    let state
+
+    before(() => {
+      const store = createNewStore({ round })
+
+      store.dispatch({
+        type: RETRY
+      })
+
+      state = store.getState().round
+    })
+
+    it('returns the state with started=false and ended=false', () => {
+      expect(state).to.contain({
+        started: false,
+        ended: false
+      })
     })
 
   })
