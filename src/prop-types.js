@@ -1,7 +1,8 @@
 import { PropTypes } from 'react'
 
 export const round = PropTypes.shape({
-  started: PropTypes.bool.isRequired
+  started: PropTypes.bool.isRequired,
+  ended: PropTypes.bool.isRequired
 })
 
 export const timeRemaining = PropTypes.number

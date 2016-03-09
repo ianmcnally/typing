@@ -15,7 +15,7 @@ describe('<Timer>', () => {
 
   context('when it renders', () => {
     const timeRemaining = 5
-    const round = { started: false }
+    const round = { started: false, ended: false }
     let component
 
     before(() => {
@@ -39,7 +39,7 @@ describe('<Timer>', () => {
 
   context('when the round has started', () => {
     const timeRemaining = 5
-    const round = { started: true }
+    const round = { started: true, ended: false }
     let component
 
     before(() => {
@@ -56,7 +56,7 @@ describe('<Timer>', () => {
 
   context('when the round has not started', () => {
     const timeRemaining = 5
-    const round = { started: false }
+    const round = { started: false, ended: false }
     let component
 
     before(() => {
@@ -73,7 +73,7 @@ describe('<Timer>', () => {
 
   context('when the round has ended', () => {
     const timeRemaining = 5
-    const round = { ended: true }
+    const round = { started: true, ended: true }
     let component
 
     before(() => {
@@ -90,7 +90,7 @@ describe('<Timer>', () => {
 
   context('when <StartButton> is clicked', () => {
     const dispatch = spy()
-    const round = { started: false }
+    const round = { started: false, ended: false }
 
     before(() => {
       stub(timerActions, 'startTimer').returns({})
@@ -114,7 +114,7 @@ describe('<Timer>', () => {
 
   context('when it is connected', () => {
     const timeRemaining = 100
-    const round = { started: false }
+    const round = { started: false, ended: false }
     let component
 
     before(() => {
