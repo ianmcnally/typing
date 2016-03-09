@@ -1,5 +1,5 @@
 import { createNewStore } from 'src/store'
-import { TIME_ADVANCED, ROUND_ENDED } from 'src/action-types'
+import { TIME_ADVANCED, RETRY, ROUND_ENDED } from 'src/action-types'
 import { expect } from 'chai'
 import { ROUND_DURATION } from 'src/constants'
 
@@ -56,6 +56,25 @@ describe('timeRemaining reducer', () => {
 
     it('the state is zero', () => {
       expect(state).to.equal(0)
+    })
+
+  })
+
+  context(`when ${RETRY} is dispatched`, () => {
+    let state
+
+    before(() => {
+      const store = createNewStore({ timeRemaining: 0 })
+
+      store.dispatch({
+        type: RETRY
+      })
+
+      state = store.getState().timeRemaining
+    })
+
+    it(`the state is ${ROUND_DURATION}`, () => {
+      expect(state).to.equal(ROUND_DURATION)
     })
 
   })
