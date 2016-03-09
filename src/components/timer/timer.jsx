@@ -3,12 +3,13 @@ import Countdown from './countdown'
 import StartButton from './start-button'
 import RetryButton from './retry-button'
 import { startTimer } from 'src/actions/start-timer'
+import { retry } from 'src/actions/retry'
 import * as AppPropTypes from 'src/prop-types'
 import { connect } from 'react-redux'
 
-const onStartButtonClick = dispatch => (
-  () => dispatch(startTimer())
-)
+const onStartButtonClick = dispatch => () => dispatch(startTimer())
+
+const onRetryButtonClick = dispatch => () => dispatch(retry())
 
 const shouldDisableStartForRound = round => Boolean(round.started || round.ended)
 
@@ -16,7 +17,7 @@ export const Timer = ({ dispatch, round, timeRemaining }) => (
   <article>
     <Countdown timeRemaining={timeRemaining} />
     <StartButton disabled={shouldDisableStartForRound(round)} onClick={onStartButtonClick(dispatch)} />
-    <RetryButton />
+    <RetryButton onClick={onRetryButtonClick(dispatch)} />
   </article>
 )
 

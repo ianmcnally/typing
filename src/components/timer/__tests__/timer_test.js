@@ -1,5 +1,6 @@
 import React from 'react'
 import * as timerActions from 'src/actions/start-timer'
+import * as retryActions from 'src/actions/retry'
 import { renderShallow } from 'lib/test-helpers'
 import TimerConnected, { Timer } from '../timer'
 import StartButton from '../start-button'
@@ -38,7 +39,7 @@ describe('<Timer>', () => {
 
     it('renders <RetryButton>', () => {
       expect(component).to.include(
-        <RetryButton />
+        <RetryButton onClick={noRefCheck} />
       )
     })
 
@@ -117,6 +118,29 @@ describe('<Timer>', () => {
       expect(dispatch).to.have.been.calledWith(timerActions.startTimer())
     })
 
+  })
+
+  context('when <RetryButton> is clicked', () => {
+    const dispatch = spy()
+    const round = { started: true, ended: false }
+
+    before(() => {
+      stub(retryActions, 'retry').returns({})
+
+      const component = renderShallow(<Timer dispatch={dispatch} round={round} timeRemaining={5} />).output
+      const retryButton = findWithType(component, RetryButton)
+
+      retryButton.props.onClick()
+    })
+
+    after(() => {
+      retryActions.retry.restore()
+    })
+
+    it('dispatches retry()', () => {
+      expect(retryActions.retry).to.have.been.called
+      expect(dispatch).to.have.been.calledWith(retryActions.retry())
+    })
   })
 
   context('when it is connected', () => {

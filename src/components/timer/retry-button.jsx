@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
-const RetryButton = () => (
-  <button>Retry</button>
+const RetryButton = ({ onClick }) => (
+  <button onClick={onClick}>Retry</button>
 )
+
+RetryButton.propTypes = {
+  onClick: PropTypes.func.isRequired
+}
 
 export default RetryButton
