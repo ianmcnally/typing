@@ -1,5 +1,6 @@
 import React from 'react'
 import ScoreConnected, { Score } from '../score'
+import styles from '../score.css'
 import { renderShallow } from 'lib/test-helpers'
 import { createNewStore } from 'src/store'
 import { expect } from 'chai'
@@ -34,8 +35,8 @@ describe('<Score>', () => {
       expect(component).to.eql(
         <article>
           <h3>Your score</h3>
-          <p className={'score__correct-score colors__color--correct'}>Correct: 1</p>
-          <p className={'score__incorrect-score colors__color--incorrect'}>Incorrect: 1</p>
+          <p className={styles['correct-score']}>Correct: 1</p>
+          <p className={styles['incorrect-score']}>Incorrect: 1</p>
         </article>
       )
     })

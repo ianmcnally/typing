@@ -1,5 +1,6 @@
 import React from 'react'
 import { TypingBox } from '../typing-box'
+import styles from '../typing-box.css'
 import * as wordActions from 'src/actions/advance-word'
 import { expect } from 'chai'
 import { renderShallow } from 'lib/test-helpers'
@@ -21,7 +22,7 @@ describe('<TypingBox>', () => {
 
     it('renders an input element', () => {
       expect(component).to.eql(
-        <input className='typing-box__input' type='text' autoFocus onKeyDown={noRefCheck} />
+        <input className={styles.input} type='text' autoFocus onKeyDown={noRefCheck} />
       )
     })
 
