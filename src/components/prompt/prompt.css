@@ -1,5 +1,6 @@
 .prompt {
   composes: grey-border-dotted from 'src/styles/borders.css';
+  composes: text-heading from 'src/styles/typography.css';
   min-height: 30rem;
   padding: 1rem;
 }
