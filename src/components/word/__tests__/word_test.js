@@ -27,7 +27,7 @@ describe('<Word>', () => {
     context('and it is graded correct', () => {
       const value = 'Eyyo'
       const submission = { value: 'Eyyo', isCorrect: true }
-      const expectedClassName = cx(styles.word, styles['correct-word'])
+      const expectedClassName = cx(styles.word, styles.correctWord)
       let component
 
       before(() => {
@@ -47,7 +47,7 @@ describe('<Word>', () => {
     context('and it is graded incorrectly', () => {
       const value = 'Eyyo'
       const submission = { value: 'Ey', isCorrect: false }
-      const expectedClassName = cx(styles.word, styles['incorrect-word'])
+      const expectedClassName = cx(styles.word, styles.incorrectWord)
       let component
 
       before(() => {

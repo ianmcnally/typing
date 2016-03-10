@@ -7,8 +7,8 @@ import styles from './score.css'
 export const Score = ({ round, scores }) => (round.ended ?
   <article>
    <h3>Your score</h3>
-   <p className={styles['correct-score']}>Correct: {scores.correct}</p>
-   <p className={styles['incorrect-score']}>Incorrect: {scores.incorrect}</p>
+   <p className={styles.correctScore}>Correct: {scores.correct}</p>
+   <p className={styles.incorrectScore}>Incorrect: {scores.incorrect}</p>
   </article>
  :
  <span />

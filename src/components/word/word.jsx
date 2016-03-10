@@ -6,8 +6,8 @@ import styles from './word.css'
 const Word = ({ submission, value }) => {
   const wordClasses = cx({
     [styles.word]: true,
-    [styles['correct-word']]: submission && submission.isCorrect,
-    [styles['incorrect-word']]: submission && !submission.isCorrect
+    [styles.correctWord]: submission && submission.isCorrect,
+    [styles.incorrectWord]: submission && !submission.isCorrect
   })
 
   return <span className={wordClasses}>{value}</span>

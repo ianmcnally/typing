@@ -4,7 +4,7 @@ import stateStyles from 'src/styles/states.css'
 
 const StartButton = ({ disabled, onClick }) => {
   const buttonClasses = cx({
-    [stateStyles['is-disabled']]: disabled
+    [stateStyles.isDisabled]: disabled
   })
 
   return (
