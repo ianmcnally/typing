@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { advanceWord } from 'src/actions/advance-word'
 import { SPACEBAR_KEY_CODE } from 'src/constants'
+import * as AppPropTypes from 'src/prop-types'
 import defer from 'lodash.defer'
 import styles from './typing-box.css'
 
@@ -10,6 +11,13 @@ export class TypingBox extends Component {
     super(props)
 
     this.onKeyDown = this.onKeyDown.bind(this)
+  }
+
+  componentDidUpdate (prevProps) {
+    const roundJustStarted = !prevProps.round.started && this.props.round.started
+
+    if (roundJustStarted)
+      this.refs.input.focus()
   }
 
   _clearInput (input) {
@@ -31,15 +39,18 @@ export class TypingBox extends Component {
 
   render () {
     return (
-      <input className={styles.input} type='text' autoFocus onKeyDown={this.onKeyDown}/>
+      <input className={styles.input} type='text' autoFocus onKeyDown={this.onKeyDown} ref='input' />
     )
   }
 
 }
 
 TypingBox.propTypes = {
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  round: AppPropTypes.round.isRequired
 }
 
-export default connect()(TypingBox)
+const mapStateToProps = ({ round }) => ({ round })
+
+export default connect(mapStateToProps)(TypingBox)
 
