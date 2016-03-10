@@ -121,6 +121,26 @@ describe('<TypingBox>', () => {
 
   })
 
+  context('when retrying', () => {
+    const input = { focus: spy() }
+
+    before(() => {
+      const prevProps = { round: { started: true, ended: true } }
+      const props = { round: { started: true, ended: false } }
+
+      const { renderer } = renderShallow(<TypingBox dispatch={spy()} {...props} />)
+      const componentInstance = getMountedInstance(renderer)
+      componentInstance.refs = { input }
+
+      componentInstance.componentDidUpdate(prevProps)
+    })
+
+    it('focuses the input', () => {
+      expect(input.focus).to.have.been.calledOnce
+    })
+
+  })
+
   context('when it is connected', () => {
     const round = { started: false, ended: false }
     let component

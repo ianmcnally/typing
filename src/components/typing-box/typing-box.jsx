@@ -15,8 +15,9 @@ export class TypingBox extends Component {
 
   componentDidUpdate (prevProps) {
     const roundJustStarted = !prevProps.round.started && this.props.round.started
+    const retrying = prevProps.round.ended && !this.props.round.ended
 
-    if (roundJustStarted)
+    if (roundJustStarted || retrying)
       this.refs.input.focus()
   }
 
