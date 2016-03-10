@@ -1,5 +1,6 @@
 import React from 'react'
 import PromptConnected, { Prompt } from '../prompt'
+import styles from '../prompt.css'
 import { Word } from 'src/components'
 import { renderShallow } from 'lib/test-helpers'
 import { createNewStore } from 'src/store'
@@ -26,6 +27,10 @@ describe('<Prompt>', () => {
 
     it('has a container of type <article>', () => {
       expect(component.type).to.equal('article')
+    })
+
+    it('has the correct className applied', () => {
+      expect(component.props.className).to.eql(styles.prompt)
     })
 
   })

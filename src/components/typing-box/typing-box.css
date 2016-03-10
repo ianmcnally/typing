@@ -1,4 +1,8 @@
 .input {
-  margin-top: 2rem;
+  composes: grey-border-solid from 'src/styles/borders.css';
+  margin: 2rem 0;
+  width: 100%;
+  line-height: 2;
+  padding: 0 1rem;
 }
 

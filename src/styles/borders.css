@@ -1,0 +1,16 @@
+.border {
+  border-width: .1rem;
+}
+
+.grey-border-dotted {
+  composes: border;
+  border-color: #ccc;
+  border-style: dotted;
+}
+
+.grey-border-solid {
+  composes: border;
+  border-color: #e6e6e6;
+  border-style: solid;
+}
+
