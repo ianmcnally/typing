@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { retrying, roundJustStarted } from 'src/selectors'
 import { connect } from 'react-redux'
 import { advanceWord } from 'src/actions/advance-word'
 import { SPACEBAR_KEY_CODE } from 'src/constants'
@@ -14,10 +15,10 @@ export class TypingBox extends Component {
   }
 
   componentDidUpdate (prevProps) {
-    const roundJustStarted = !prevProps.round.started && this.props.round.started
-    const retrying = prevProps.round.ended && !this.props.round.ended
+    const justStartedRound = roundJustStarted(prevProps, this.props)
+    const isRetrying = retrying(prevProps, this.props)
 
-    if (roundJustStarted || retrying)
+    if (justStartedRound || isRetrying)
       this.refs.input.focus()
   }
 
