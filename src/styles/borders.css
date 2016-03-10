@@ -10,7 +10,7 @@
 
 .grey-border-solid {
   composes: border;
-  border-color: #e6e6e6;
+  border-color: #dcdcdc;
   border-style: solid;
 }
 
