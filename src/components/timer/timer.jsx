@@ -13,11 +13,11 @@ const onRetryButtonClick = dispatch => () => dispatch(retry())
 const shouldDisableStartForRound = round => Boolean(round.started || round.ended)
 
 const Timer = ({ dispatch, round, timeRemaining }) => (
-  <article>
+  <span>
     <Countdown timeRemaining={timeRemaining} />
     <StartButton disabled={shouldDisableStartForRound(round)} onClick={onStartButtonClick(dispatch)} />
     <RetryButton onClick={onRetryButtonClick(dispatch)} />
-  </article>
+  </span>
 )
 
 Timer.propTypes = {

@@ -24,6 +24,10 @@ describe('<Timer>', () => {
       component = output
     })
 
+    it('renders a container as a <span>', () => {
+      expect(component.type).to.eql('span')
+    })
+
     it('renders <Countdown> with props.timeRemaining', () => {
       expect(component).to.include(
         <Countdown timeRemaining={timeRemaining} />
