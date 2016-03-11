@@ -16,8 +16,8 @@ describe('<Score>', () => {
       component = renderShallow(<Score round={round} scores={scores} />).output
     })
 
-    it('renders an empty span', () => {
-      expect(component).to.eql(<span />)
+    it('renders null', () => {
+      expect(component).to.be.null
     })
 
   })

@@ -4,14 +4,12 @@ import * as AppPropTypes from 'src/prop-types'
 import { connect } from 'react-redux'
 import styles from './score.css'
 
-export const Score = ({ round, scores }) => (round.ended ?
+export const Score = ({ round, scores }) => (round.ended &&
   <article>
    <h3>Your score</h3>
    <p className={styles.correctScore}>Correct: {scores.correct}</p>
    <p className={styles.incorrectScore}>Incorrect: {scores.incorrect}</p>
   </article>
- :
- <span />
 )
 
 Score.propTypes = {
