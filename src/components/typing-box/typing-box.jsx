@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import { retrying, roundJustStarted } from 'src/selectors'
-import { connect } from 'react-redux'
 import { advanceWord } from 'src/actions/advance-word'
 import { SPACEBAR_KEY_CODE } from 'src/constants'
 import * as AppPropTypes from 'src/prop-types'
 import defer from 'lodash.defer'
 import styles from './typing-box.css'
 
-export class TypingBox extends Component {
+export default class TypingBox extends Component {
   constructor (props) {
     super(props)
 
@@ -51,8 +50,4 @@ TypingBox.propTypes = {
   dispatch: PropTypes.func.isRequired,
   round: AppPropTypes.round.isRequired
 }
-
-const mapStateToProps = ({ round }) => ({ round })
-
-export default connect(mapStateToProps)(TypingBox)
 

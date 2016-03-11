@@ -2,11 +2,10 @@ import React from 'react'
 import * as timerActions from 'src/actions/start-timer'
 import * as retryActions from 'src/actions/retry'
 import { renderShallow } from 'lib/test-helpers'
-import TimerConnected, { Timer } from '../timer'
+import Timer from '../timer'
 import StartButton from '../start-button'
 import RetryButton from '../retry-button'
 import Countdown from '../countdown'
-import { createNewStore } from 'src/store'
 import { expect } from 'chai'
 import { findWithType } from 'react-shallow-testutils'
 import { spy, stub } from 'sinon'
@@ -141,34 +140,6 @@ describe('<Timer>', () => {
       expect(retryActions.retry).to.have.been.called
       expect(dispatch).to.have.been.calledWith(retryActions.retry())
     })
-  })
-
-  context('when it is connected', () => {
-    const timeRemaining = 100
-    const round = { started: false, ended: false }
-    let component
-
-    before(() => {
-      const store = createNewStore({ round, timeRemaining })
-      const { output } = renderShallow(<TimerConnected store={store} />)
-      component = output
-    })
-
-    it('renders <Timer>', () => {
-      expect(component).to.be.ok
-      expect(component.type).to.equal(Timer)
-    })
-
-    it('injects state.timeRemaining as props.timeRemaining', () => {
-      expect(component.props.timeRemaining).to.be.ok
-      expect(component.props.timeRemaining).to.eql(timeRemaining)
-    })
-
-    it('injects state.round as state.round', () => {
-      expect(component.props.round).to.be.ok
-      expect(component.props.round).to.equal(round)
-    })
-
   })
 
 })

@@ -1,5 +1,5 @@
 import AppConnected, { App } from '../app'
-import { Prompt, Score, TypingBox, Timer } from 'src/components'
+import { Prompt, Score, Controls } from 'src/components'
 import { renderShallow } from 'lib/test-helpers'
 import React from 'react'
 import { Provider } from 'react-redux'
@@ -24,15 +24,9 @@ describe('<App>', () => {
       )
     })
 
-    it('renders <TypingBox>', () => {
+    it('renders <Controls>', () => {
       expect(component).to.include(
-        <TypingBox />
-      )
-    })
-
-    it('renders <Timer>', () => {
-      expect(component).to.include(
-        <Timer />
+        <Controls />
       )
     })
 

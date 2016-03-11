@@ -5,7 +5,6 @@ import RetryButton from './retry-button'
 import { startTimer } from 'src/actions/start-timer'
 import { retry } from 'src/actions/retry'
 import * as AppPropTypes from 'src/prop-types'
-import { connect } from 'react-redux'
 
 const onStartButtonClick = dispatch => () => dispatch(startTimer())
 
@@ -13,7 +12,7 @@ const onRetryButtonClick = dispatch => () => dispatch(retry())
 
 const shouldDisableStartForRound = round => Boolean(round.started || round.ended)
 
-export const Timer = ({ dispatch, round, timeRemaining }) => (
+const Timer = ({ dispatch, round, timeRemaining }) => (
   <article>
     <Countdown timeRemaining={timeRemaining} />
     <StartButton disabled={shouldDisableStartForRound(round)} onClick={onStartButtonClick(dispatch)} />
@@ -27,7 +26,5 @@ Timer.propTypes = {
   timeRemaining: AppPropTypes.timeRemaining.isRequired
 }
 
-const mapStateToProps = ({ round, timeRemaining }) => ({ round, timeRemaining })
-
-export default connect(mapStateToProps)(Timer)
+export default Timer
 

@@ -1,11 +1,10 @@
 import React from 'react'
-import TypingBoxConnected, { TypingBox } from '../typing-box'
+import TypingBox from '../typing-box'
 import styles from '../typing-box.css'
 import * as wordActions from 'src/actions/advance-word'
 import { expect } from 'chai'
 import { renderShallow } from 'lib/test-helpers'
 import defer from 'lodash.defer'
-import { createNewStore } from 'src/store'
 import { spy, stub } from 'sinon'
 import { getMountedInstance } from 'react-shallow-testutils'
 
@@ -161,25 +160,6 @@ describe('<TypingBox>', () => {
         expect(input.focus).to.have.been.calledOnce
       })
 
-    })
-
-  })
-
-  context('when it is connected', () => {
-    const round = { started: false, ended: false }
-    let component
-
-    before(() => {
-      const store = createNewStore({ round })
-      component = renderShallow(<TypingBoxConnected store={store} />).output
-    })
-
-    it('renders <TypingBox>', () => {
-      expect(component.type).to.eql(TypingBox)
-    })
-
-    it('injects state.round as props.round', () => {
-      expect(component.props.round).to.equal(round)
     })
 
   })

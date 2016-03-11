@@ -1,4 +1,5 @@
 export { default as App } from './app'
+export { default as Controls } from './controls/controls'
 export { default as Word } from './word/word'
 export { default as Prompt } from './prompt/prompt'
 export { default as Score } from './score/score'
