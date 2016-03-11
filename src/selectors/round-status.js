@@ -21,7 +21,7 @@ export const retrying = createSelector(
     const wasEndedAndNowIsNot = prevRound.ended && !round.ended
     const wasStartedAndNowIsNot = prevRound.started && !round.started
 
-    return wasStartedAndNowIsNot || wasEndedAndNowIsNot
+    return Boolean(wasStartedAndNowIsNot || wasEndedAndNowIsNot)
   }
 
 )
