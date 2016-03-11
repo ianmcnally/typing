@@ -2,13 +2,13 @@ import { createSelector } from 'reselect'
 import reduce from 'lodash.reduce'
 import { submittedWordsSelector } from './state'
 
-const initialGrades = { correct: 0, incorrect: 0 }
+const initialGrades = { correct: 0, incorrect: 0, wpm: 0 }
 
 export default createSelector(
   submittedWordsSelector,
   submittedWords => reduce(submittedWords, (grades, word) => (
     (word.isCorrect) ?
-    { ...grades, correct: grades.correct + 1 } :
+    { ...grades, correct: grades.correct + 1, wpm: grades.wpm + 1 } :
     { ...grades, incorrect: grades.incorrect + 1 }
   ), initialGrades)
 )

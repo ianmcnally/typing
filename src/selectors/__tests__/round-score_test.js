@@ -11,8 +11,8 @@ describe('roundScore', () => {
       output = roundScore(state)
     })
 
-    it('returns 0s for correct and incorrect scores', () => {
-      expect(output).to.eql({ correct: 0, incorrect: 0 })
+    it('returns 0s for correct, incorrect and wpm scores', () => {
+      expect(output).to.eql({ correct: 0, incorrect: 0, wpm: 0 })
     })
 
   })
@@ -25,8 +25,8 @@ describe('roundScore', () => {
       output = roundScore(state)
     })
 
-    it('returns 0s for correct and incorrect scores', () => {
-      expect(output).to.eql({ correct: 0, incorrect: 0 })
+    it('returns 0s for correct, incorrect and wpm scores', () => {
+      expect(output).to.eql({ correct: 0, incorrect: 0, wpm: 0 })
     })
 
   })
@@ -45,8 +45,8 @@ describe('roundScore', () => {
       output = roundScore(state)
     })
 
-    it('returns the correct count and 0 for incorrect', () => {
-      expect(output).to.eql({ correct: 2, incorrect: 0 })
+    it('returns the correct count, 0 for incorrect, and wpm count', () => {
+      expect(output).to.eql({ correct: 2, incorrect: 0, wpm: 2 })
     })
 
   })
@@ -65,8 +65,8 @@ describe('roundScore', () => {
       output = roundScore(state)
     })
 
-    it('returns the incorrect count and 0 for correct', () => {
-      expect(output).to.eql({ correct: 0, incorrect: 2 })
+    it('returns the incorrect count and 0 for correct and wpm', () => {
+      expect(output).to.eql({ correct: 0, incorrect: 2, wpm: 0 })
     })
 
   })
@@ -87,7 +87,7 @@ describe('roundScore', () => {
     })
 
     it('returns the right grades', () => {
-      expect(output).to.eql({ correct: 2, incorrect: 1 })
+      expect(output).to.eql({ correct: 2, incorrect: 1, wpm: 2 })
     })
 
   })

@@ -9,7 +9,7 @@ describe('<Score>', () => {
 
   context('when the round has not ended', () => {
     const round = { started: true, ended: false }
-    const scores = { correct: 0, incorrect: 0 }
+    const scores = { correct: 0, incorrect: 0, wpm: 0 }
     let component
 
     before(() => {
@@ -24,7 +24,7 @@ describe('<Score>', () => {
 
   context('when the round has ended', () => {
     const round = { started: true, ended: true }
-    const scores = { correct: 1, incorrect: 1 }
+    const scores = { correct: 1, incorrect: 1, wpm: 1 }
     let component
 
     before(() => {
@@ -37,6 +37,7 @@ describe('<Score>', () => {
           <h3>Your score</h3>
           <p className={styles.correctScore}>Correct: 1</p>
           <p className={styles.incorrectScore}>Incorrect: 1</p>
+          <p>Words per minute: 1</p>
         </article>
       )
     })
@@ -68,7 +69,8 @@ describe('<Score>', () => {
       expect(component.props.scores).to.be.ok
       expect(component.props.scores).to.eql({
         correct: 1,
-        incorrect: 1
+        incorrect: 1,
+        wpm: 1
       })
     })
 

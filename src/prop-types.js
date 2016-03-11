@@ -7,7 +7,8 @@ export const round = PropTypes.shape({
 
 export const scores = PropTypes.shape({
   correct: PropTypes.number.isRequired,
-  incorrect: PropTypes.number.isRequired
+  incorrect: PropTypes.number.isRequired,
+  wpm: PropTypes.number.isRequired
 })
 
 export const timeRemaining = PropTypes.number

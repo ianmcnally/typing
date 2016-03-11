@@ -9,6 +9,7 @@ export const Score = ({ round, scores }) => (round.ended &&
    <h3>Your score</h3>
    <p className={styles.correctScore}>Correct: {scores.correct}</p>
    <p className={styles.incorrectScore}>Incorrect: {scores.incorrect}</p>
+   <p>Words per minute: {scores.wpm}</p>
   </article>
 )
 
