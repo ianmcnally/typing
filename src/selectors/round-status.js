@@ -1,5 +1,6 @@
-// round status selectors require previous state and current state,
-// so they override reselects' selector(state, props) signature
+// round status selectors (roundJustStated and retrying)
+// require previous state and current state,
+// so they override reselect's selector(state, props) signature
 // to be called with selector(previousState, currentState)
 
 import { createSelector } from 'reselect'
@@ -17,5 +18,10 @@ export const retrying = createSelector(
   roundSelector,
   nextRoundSelector,
   (prevRound, round) => prevRound.ended && !round.ended
+)
+
+export const roundCanceled = createSelector(
+  roundSelector,
+  round => !round.started && !round.ended
 )
 

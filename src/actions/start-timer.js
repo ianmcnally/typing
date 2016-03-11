@@ -1,5 +1,6 @@
 import { ROUND_ENDED, ROUND_STARTED, TIME_ADVANCED } from 'src/action-types'
 import { start as timerStart } from 'src/lib/timer'
+import { roundCanceled } from 'src/selectors'
 
 const timeAdvanced = timeRemaining => ({
   type: TIME_ADVANCED,
@@ -15,15 +16,21 @@ const roundEnded = () => ({
 })
 
 export const startTimer = () => (
-  dispatch => {
+  (dispatch, getState) => {
     dispatch(roundStarted())
 
-    timerStart().subscribe(
-      timeRemaining => dispatch(timeAdvanced(timeRemaining)),
+    const subscription = timerStart().subscribe(
+      timeRemaining => {
+        if (roundCanceled(getState()))
+          subscription.dispose()
+        else
+          dispatch(timeAdvanced(timeRemaining))
+      },
       () => {},
       () => dispatch(roundEnded())
     )
 
+    return subscription // for testing
   }
 )
 

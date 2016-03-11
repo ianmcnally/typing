@@ -12,6 +12,7 @@ import { expect } from 'chai'
 import { TestScheduler } from 'rx'
 
 describe('startTimer action', () => {
+
   context('before it starts the sequence', () => {
     const dispatch = spy()
 
@@ -36,46 +37,90 @@ describe('startTimer action', () => {
   })
 
   context('while the sequence is happening', () => {
-    const dispatch = spy()
-    let testScheduler
 
-    before(() => {
-      testScheduler = new TestScheduler()
+    context('and the round has not been canceled', () => {
+      const dispatch = spy()
+      const getState = () => ({ round: { started: true, ended: false } })
+      let subscription
+      let testScheduler
 
-      stub(scheduler, 'get').returns(testScheduler)
+      before(() => {
+        testScheduler = new TestScheduler()
 
-      timerActions.startTimer()(dispatch)
-    })
+        stub(scheduler, 'get').returns(testScheduler)
 
-    after(() => {
-      scheduler.get.restore()
-    })
+        subscription = timerActions.startTimer()(dispatch, getState)
 
-    it(`dispatches ${TIME_ADVANCED} with the remaining time over the sequence`, () => {
-      const durationToZero = range(ROUND_DURATION - 1, -1, 1)
-
-      durationToZero.map((timeRemaining, idx) => {
-        testScheduler.advanceBy((idx + 1) * 1000)
-
-        expect(dispatch).to.have.been.calledWith({
-          type: TIME_ADVANCED,
-          timeRemaining
-        })
-
+        spy(subscription, 'dispose')
       })
+
+      after(() => {
+        scheduler.get.restore()
+      })
+
+      it(`dispatches ${TIME_ADVANCED} with the remaining time over the sequence`, () => {
+        const durationToZero = range(ROUND_DURATION - 1, -1, 1)
+
+        durationToZero.map((timeRemaining, idx) => {
+          testScheduler.advanceBy((idx + 1) * 1000)
+
+          expect(dispatch).to.have.been.calledWith({
+            type: TIME_ADVANCED,
+            timeRemaining
+          })
+
+          expect(subscription.dispose).not.to.have.been.called
+
+        })
+      })
+
+    })
+
+    context('and the round has been canceled', () => {
+      const dispatch = spy()
+      const getState = () => ({ round: { started: false, ended: false } })
+      let subscription
+
+      before(() => {
+        const testScheduler = new TestScheduler()
+
+        stub(scheduler, 'get').returns(testScheduler)
+
+        subscription = timerActions.startTimer()(dispatch, getState)
+
+        spy(subscription, 'dispose')
+
+        dispatch.reset()
+
+        testScheduler.advanceBy(1000)
+      })
+
+      after(() => {
+        scheduler.get.restore()
+      })
+
+      it('does not dispatch time remaining', () => {
+        expect(dispatch).not.to.have.been.called
+      })
+
+      it('disposes of the subscription', () => {
+        expect(subscription.dispose).to.have.been.called
+      })
+
     })
 
   })
 
   context('when the sequence has ended', () => {
     const dispatch = spy()
+    const getState = () => ({ round: { started: false, ended: true } })
 
     before(() => {
       const testScheduler = new TestScheduler()
 
       stub(scheduler, 'get').returns(testScheduler)
 
-      timerActions.startTimer()(dispatch)
+      timerActions.startTimer()(dispatch, getState)
 
       testScheduler.advanceBy((ROUND_DURATION - 1) * 1000)
 
