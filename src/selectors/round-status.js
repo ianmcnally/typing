@@ -17,7 +17,13 @@ export const roundJustStarted = createSelector(
 export const retrying = createSelector(
   roundSelector,
   nextRoundSelector,
-  (prevRound, round) => prevRound.ended && !round.ended
+  (prevRound, round) => {
+    const wasEndedAndNowIsNot = prevRound.ended && !round.ended
+    const wasStartedAndNowIsNot = prevRound.started && !round.started
+
+    return wasStartedAndNowIsNot || wasEndedAndNowIsNot
+  }
+
 )
 
 export const roundCanceled = createSelector(

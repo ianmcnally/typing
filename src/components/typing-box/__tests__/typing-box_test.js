@@ -122,21 +122,45 @@ describe('<TypingBox>', () => {
   })
 
   context('when retrying', () => {
-    const input = { focus: spy() }
 
-    before(() => {
-      const prevProps = { round: { started: true, ended: true } }
-      const props = { round: { started: true, ended: false } }
+    context('after a round has ended', () => {
+      const input = { focus: spy() }
 
-      const { renderer } = renderShallow(<TypingBox dispatch={spy()} {...props} />)
-      const componentInstance = getMountedInstance(renderer)
-      componentInstance.refs = { input }
+      before(() => {
+        const prevProps = { round: { started: true, ended: true } }
+        const props = { round: { started: true, ended: false } }
 
-      componentInstance.componentDidUpdate(prevProps)
+        const { renderer } = renderShallow(<TypingBox dispatch={spy()} {...props} />)
+        const componentInstance = getMountedInstance(renderer)
+        componentInstance.refs = { input }
+
+        componentInstance.componentDidUpdate(prevProps)
+      })
+
+      it('focuses the input', () => {
+        expect(input.focus).to.have.been.calledOnce
+      })
+
     })
 
-    it('focuses the input', () => {
-      expect(input.focus).to.have.been.calledOnce
+    context('during a round', () => {
+      const input = { focus: spy() }
+
+      before(() => {
+        const prevProps = { round: { started: true, ended: false } }
+        const props = { round: { started: false, ended: false } }
+
+        const { renderer } = renderShallow(<TypingBox dispatch={spy()} {...props} />)
+        const componentInstance = getMountedInstance(renderer)
+        componentInstance.refs = { input }
+
+        componentInstance.componentDidUpdate(prevProps)
+      })
+
+      it('focuses the input', () => {
+        expect(input.focus).to.have.been.calledOnce
+      })
+
     })
 
   })
