@@ -1,23 +1,39 @@
 /* eslint-disable react/no-multi-comp */
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux'
 import { Prompt, Score, Controls } from 'src/components'
 import store from 'src/store'
 import 'normalize.css'
 import 'src/styles/colors.css'
+import { getWords } from 'src/actions/get-words'
 import styles from './app.css'
 
-export const App = () => (
-  <section className={styles.app}>
-    <Prompt />
-    <Controls />
-    <Score />
-  </section>
-)
+export class App extends Component {
+
+  componentWillMount () {
+    const { dispatch } = this.props
+
+    dispatch(getWords())
+  }
+
+  render () {
+    return (
+      <section className={styles.app}>
+        <Prompt />
+        <Controls />
+        <Score />
+      </section>
+    )
+  }
+
+}
+
+App.propTypes = {
+  dispatch: PropTypes.func.isRequired
+}
 
 export default () => (
   <Provider store={store}>
-    <App />
+    <App dispatch={store.dispatch} />
   </Provider>
 )
-

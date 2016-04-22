@@ -7,9 +7,7 @@ const logger = createLogger({
   predicate: () => process.env.NODE_ENV === 'development'
 })
 
-const initialState = {
-  words: ['a', 'b', 'c']
-}
+const initialState = {}
 
 export const createNewStore = (state = initialState) => (
   createStore(

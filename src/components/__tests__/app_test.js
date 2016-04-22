@@ -5,7 +5,8 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import store from 'src/store'
 import { expect } from 'chai'
-import { spy } from 'sinon'
+import { stub, spy } from 'sinon'
+import * as getWordActions from 'src/actions/get-words'
 
 describe('<App>', () => {
 
@@ -15,6 +16,8 @@ describe('<App>', () => {
     let component
 
     before(() => {
+      stub(getWordActions, 'getWords')
+
       component = renderShallow(<App words={words} dispatch={dispatch} />).output
     })
 
@@ -36,6 +39,10 @@ describe('<App>', () => {
       )
     })
 
+    it('dispatches the getWords action', () => {
+      expect(dispatch).to.have.been.calledOnce.calledWith(getWordActions.getWords())
+    })
+
   })
 
   context('when it is connected', () => {
@@ -48,7 +55,7 @@ describe('<App>', () => {
     it('renders a <Provider> wrapped <App>', () => {
       expect(component).to.eql(
         <Provider store={store}>
-          <App />
+          <App dispatch={store.dispatch} />
         </Provider>
       )
     })

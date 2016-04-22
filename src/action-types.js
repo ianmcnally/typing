@@ -3,4 +3,4 @@ export const ROUND_STARTED = 'ROUND_STARTED'
 export const SUBMISSION_GRADED = 'SUBMISSION_GRADED'
 export const TIME_ADVANCED = 'TIME_ADVANCED'
 export const RETRY = 'RETRY'
-
+export const WORDS_FETCHED = 'WORDS_FETCHED'
