@@ -39,15 +39,24 @@ export default class TypingBox extends Component {
   }
 
   render () {
+    const { disabled } = this.props
+
     return (
-      <input className={styles.input} type='text' autoFocus onKeyDown={this.onKeyDown} ref='input' />
+      <input
+        className={styles.input}
+        disabled={disabled}
+        type='text'
+        autoFocus
+        onKeyDown={this.onKeyDown}
+        ref='input'
+      />
     )
   }
 
 }
 
 TypingBox.propTypes = {
+  disabled: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
   round: AppPropTypes.round.isRequired
 }
-

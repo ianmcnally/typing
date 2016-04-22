@@ -13,19 +13,54 @@ const noRefCheck = () => {}
 describe('<TypingBox>', () => {
 
   context('when it renders', () => {
+    const disabled = false
     const dispatch = spy()
     const round = { started: false, ended: false }
     let component
 
     before(() => {
-      const { output } = renderShallow(<TypingBox dispatch={dispatch} round={round} />)
+      const { output } = renderShallow(<TypingBox disabled={disabled} dispatch={dispatch} round={round} />)
       component = output
     })
 
     it('renders an input element', () => {
       expect(component).to.eql(
-        <input className={styles.input} ref='input' type='text' autoFocus onKeyDown={noRefCheck} />
+        <input className={styles.input} disabled={false} ref='input' type='text' autoFocus onKeyDown={noRefCheck} />
       )
+    })
+
+  })
+
+  context('when props.disabled=true', () => {
+    const disabled = true
+    const dispatch = spy()
+    const round = { started: false, ended: false }
+    let component
+
+    before(() => {
+      const { output } = renderShallow(<TypingBox disabled={disabled} dispatch={dispatch} round={round} />)
+      component = output
+    })
+
+    it('sets the disabled attribute on the input', () => {
+      expect(component.props.disabled).to.be.true
+    })
+
+  })
+
+  context('when props.disabled=false', () => {
+    const disabled = false
+    const dispatch = spy()
+    const round = { started: false, ended: false }
+    let component
+
+    before(() => {
+      const { output } = renderShallow(<TypingBox disabled={disabled} dispatch={dispatch} round={round} />)
+      component = output
+    })
+
+    it('sets the disabled attribute on the input', () => {
+      expect(component.props.disabled).to.be.false
     })
 
   })

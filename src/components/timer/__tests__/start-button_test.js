@@ -3,6 +3,7 @@ import StartButton from '../start-button'
 import { renderShallow } from 'lib/test-helpers'
 import { expect } from 'chai'
 import { spy } from 'sinon'
+import stateStyles from 'src/styles/states.css'
 
 describe('Timer <StartButton>', () => {
 
@@ -43,7 +44,7 @@ describe('Timer <StartButton>', () => {
     })
 
     it('adds a disabled class', () => {
-      expect(component.props.className).to.include('states__is-disabled')
+      expect(component.props.className).to.include(stateStyles.isDisabled)
     })
 
   })
@@ -62,7 +63,7 @@ describe('Timer <StartButton>', () => {
     })
 
     it('does not add a disabled class', () => {
-      expect(component.props.className).not.to.include('states__is-disabled')
+      expect(component.props.className).not.to.include(stateStyles.isDisabled)
     })
   })
 })

@@ -66,18 +66,45 @@ describe('<Timer>', () => {
   })
 
   context('when the round has not started', () => {
-    const timeRemaining = 5
-    const round = { started: false, ended: false }
-    let component
 
-    before(() => {
-      component = renderShallow(<Timer timeRemaining={timeRemaining} dispatch={spy()} round={round} />).output
+    context('and props.disableStart is not true', () => {
+      const disableStart = false
+      const timeRemaining = 5
+      const round = { started: false, ended: false }
+      let component
+
+      before(() => {
+        component = renderShallow(
+          <Timer disableStart={disableStart} timeRemaining={timeRemaining} dispatch={spy()} round={round} />
+        ).output
+      })
+
+      it('renders <StartButton> with disabled=false', () => {
+        expect(component).to.include(
+          <StartButton disabled={false} onClick={noRefCheck} />
+        )
+      })
+
     })
 
-    it('renders <StartButton> with disabled=false', () => {
-      expect(component).to.include(
-        <StartButton disabled={false} onClick={noRefCheck} />
-      )
+    context('and props.disableStart=true', () => {
+      const disableStart = true
+      const timeRemaining = 5
+      const round = { started: false, ended: false }
+      let component
+
+      before(() => {
+        component = renderShallow(
+          <Timer disableStart={disableStart} timeRemaining={timeRemaining} dispatch={spy()} round={round} />
+        ).output
+      })
+
+      it('renders <StartButton> with disabled=true', () => {
+        expect(component).to.include(
+          <StartButton disabled={true} onClick={noRefCheck} /> // eslint-disable-line react/jsx-boolean-value
+        )
+      })
+
     })
 
   })

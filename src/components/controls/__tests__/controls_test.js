@@ -9,13 +9,16 @@ import { spy } from 'sinon'
 describe('<Controls>', () => {
 
   context('when it is rendered', () => {
+    const disableInput = true
     const dispatch = spy()
     const round = { started: false, ended: false }
     const timeRemaining = 33
     let component
 
     before(() => {
-      component = renderShallow(<Controls dispatch={dispatch} round={round} timeRemaining={timeRemaining} />).output
+      component = renderShallow(
+        <Controls disableInput={disableInput} dispatch={dispatch} round={round} timeRemaining={timeRemaining} />
+      ).output
     })
 
     it('renders the container as an article', () => {
@@ -24,13 +27,13 @@ describe('<Controls>', () => {
 
     it('renders a <TypingBox>', () => {
       expect(component).to.include(
-        <TypingBox dispatch={dispatch} round={round} />
+        <TypingBox disabled={disableInput} dispatch={dispatch} round={round} />
       )
     })
 
     it('renders a <Timer>', () => {
       expect(component).to.include(
-        <Timer dispatch={dispatch} round={round} timeRemaining={timeRemaining} />
+        <Timer disableStart={disableInput} dispatch={dispatch} round={round} timeRemaining={timeRemaining} />
       )
     })
 
@@ -39,10 +42,11 @@ describe('<Controls>', () => {
   context('when it is connected', () => {
     const round = { started: false, ended: false }
     const timeRemaining = 43
+    const words = []
     let component
 
     before(() => {
-      const store = createNewStore({ round, timeRemaining })
+      const store = createNewStore({ round, timeRemaining, words })
       component = renderShallow(<ControlsConnected store={store} />).output
     })
 
@@ -56,6 +60,40 @@ describe('<Controls>', () => {
 
     it('injects state.timeRemaining as props.timeRemaining', () => {
       expect(component.props.timeRemaining).to.equal(timeRemaining)
+    })
+
+    context('and state.words is not empty', () => {
+      const round = { started: false, ended: false }
+      const timeRemaining = 43
+      const words = ['a', 'b']
+      let component
+
+      before(() => {
+        const store = createNewStore({ round, timeRemaining, words })
+        component = renderShallow(<ControlsConnected store={store} />).output
+      })
+
+      it('sets props.disableInput as false', () => {
+        expect(component.props.disableInput).to.be.false
+      })
+
+    })
+
+    context('and state.words is empty', () => {
+      const round = { started: false, ended: false }
+      const timeRemaining = 43
+      const words = []
+      let component
+
+      before(() => {
+        const store = createNewStore({ round, timeRemaining, words })
+        component = renderShallow(<ControlsConnected store={store} />).output
+      })
+
+      it('sets props.disableInput as true', () => {
+        expect(component.props.disableInput).to.be.true
+      })
+
     })
 
   })
