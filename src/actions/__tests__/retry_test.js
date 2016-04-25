@@ -1,20 +1,32 @@
 import { retry } from '../retry'
+import * as getWordsActions from 'src/actions/get-words'
 import { RETRY } from 'src/action-types'
 import { expect } from 'chai'
+import { spy, stub } from 'sinon'
 
 describe('retry action', () => {
 
   context('when it is called', () => {
-    let output
+    const dispatch = spy()
 
     before(() => {
-      output = retry()
+      stub(getWordsActions, 'getWords').returns({ type: 'GET_WORDS_STUB!' })
+
+      retry()(dispatch)
     })
 
-    it(`returns an object with type ${RETRY}`, () => {
-      expect(output).to.eql({
+    after(() => {
+      getWordsActions.getWords.restore()
+    })
+
+    it(`dispatches an action with type ${RETRY}`, () => {
+      expect(dispatch).to.have.been.calledWith({
         type: RETRY
       })
+    })
+
+    it('dispatches the getWords action', () => {
+      expect(dispatch).to.have.been.calledWith(getWordsActions.getWords())
     })
 
   })

@@ -21,6 +21,10 @@ describe('<App>', () => {
       component = renderShallow(<App words={words} dispatch={dispatch} />).output
     })
 
+    after(() => {
+      getWordActions.getWords.restore()
+    })
+
     it('renders <Prompt>', () => {
       expect(component).to.include(
         <Prompt />
