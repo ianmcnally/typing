@@ -4,6 +4,8 @@ A typing game.
 
 ## Setup
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ianmcnally/typing.svg)](https://greenkeeper.io/)
+
 - Requires [node.js](nodejs.org) to be installed
 - `npm install` - Installs all dependencies
 
